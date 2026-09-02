@@ -13,10 +13,13 @@ export function Hero() {
     <section className={styles.hero} id="inicio">
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <p className={styles.terminal}>danilo@portfolio:~$</p>
+        <p className={styles.terminal}>descomplicadevdan@portfolio:~$</p>
         <h1>
           <span>Olá, eu sou</span>
-          Danilo<span className={styles.cursor}>|</span>
+          <span className={styles.nameLine}>Descomplica</span>
+          <span className={styles.nameLine}>
+            Dev Dan<span className={styles.cursor}>|</span>
+          </span>
         </h1>
         <p className={styles.role}>
           Desenvolvedor <strong>Web</strong> &amp; Analista de Sistemas

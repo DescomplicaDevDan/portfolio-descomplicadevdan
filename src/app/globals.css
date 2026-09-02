@@ -10,6 +10,18 @@
   --header-height: 92px;
   --radius-small: 12px;
   --radius-medium: 20px;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --color-background: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-text: #101712;
+  --color-text-muted: #566159;
+  --color-accent: #20bb43;
+  --color-accent-strong: #159333;
+  --color-border: rgb(21 147 51 / 28%);
+  color-scheme: light;
 }
 
 * {
@@ -27,6 +39,7 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 a {
