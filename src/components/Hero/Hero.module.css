@@ -1,0 +1,167 @@
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  background: var(--color-background) url("/assets/Background-Home.png") center / cover no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(2 6 5 / 96%) 0%, rgb(2 6 5 / 78%) 33%, transparent 66%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 48px), var(--content-width));
+  margin: 0 auto;
+  padding: clamp(90px, 11vh, 150px) 0 72px;
+}
+
+.terminal {
+  margin-bottom: 24px;
+  color: var(--color-accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.05rem;
+}
+
+.content h1 {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  color: var(--color-accent);
+  font-size: clamp(4rem, 7vw, 7.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+  text-shadow: 0 0 28px rgb(66 232 98 / 22%);
+}
+
+.content h1 > span:first-child {
+  margin-bottom: 16px;
+  color: #d6dbd8;
+  font-size: clamp(2.25rem, 4vw, 4.1rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+.cursor {
+  margin-left: 8px;
+  font-weight: 300;
+}
+
+.role {
+  margin-top: 22px;
+  color: #c2c8c4;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+}
+
+.role strong {
+  color: var(--color-accent-strong);
+  font-weight: 500;
+}
+
+.description {
+  max-width: 575px;
+  margin-top: 36px;
+  padding-left: 22px;
+  border-left: 2px solid var(--color-accent);
+  color: #c1c7c3;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.buttons {
+  display: flex;
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 58px;
+  padding: 0 28px;
+  border-radius: var(--radius-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.primaryButton {
+  background: var(--color-accent);
+  color: #051208;
+  box-shadow: 0 0 22px rgb(66 232 98 / 35%);
+}
+
+.primaryButton span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-accent-strong);
+  color: #e1e5e3;
+}
+
+.socialArea {
+  margin-top: 40px;
+}
+
+.socialArea > p {
+  margin-bottom: 14px;
+  color: #737c77;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 18px;
+}
+
+.socialLinks a {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-accent-strong);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgb(3 10 7 / 70%);
+}
+
+.socialLinks img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    background-position: 62% center;
+  }
+
+  .overlay {
+    background: rgb(2 6 5 / 80%);
+  }
+
+  .content {
+    width: min(calc(100% - 36px), var(--content-width));
+    padding-top: 72px;
+  }
+}
+
+@media (max-width: 560px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}
