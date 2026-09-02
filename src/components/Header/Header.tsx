@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 const links = [
-  { label: "Início", href: "#inicio", id: "inicio" },
-  { label: "Sobre", href: "#sobre", id: "sobre" },
-  { label: "Projetos", href: "#projetos", id: "projetos" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Experiências", href: "#experiencias", id: "experiencias" },
-  { label: "Contato", href: "#contato", id: "contato" },
+  { label: "Início", href: "/#inicio", id: "inicio" },
+  { label: "Sobre", href: "/#sobre", id: "sobre" },
+  { label: "Projetos", href: "/projetos", id: "projetos" },
+  { label: "Skills", href: "/#skills", id: "skills" },
+  { label: "Experiências", href: "/#experiencias", id: "experiencias" },
+  { label: "Contato", href: "/#contato", id: "contato" },
 ];
 
 type Theme = "dark" | "light";
@@ -67,15 +68,15 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <a className={styles.brand} href="#inicio" aria-label="Ir para o início" onClick={() => handleNavigation("inicio")}>
+        <Link className={styles.brand} href="/#inicio" aria-label="Ir para o início" onClick={() => handleNavigation("inicio")}>
           <span aria-hidden="true">&gt;_</span><span>sudo be_myself</span>
-        </a>
+        </Link>
 
         <nav className={`${styles.navigation} ${isMenuOpen ? styles.navigationOpen : ""}`} aria-label="Navegação principal" id="primary-navigation">
           {links.map((link) => (
-            <a className={activeSection === link.id ? styles.active : undefined} href={link.href} key={link.href} aria-current={activeSection === link.id ? "page" : undefined} onClick={() => handleNavigation(link.id)}>
+            <Link className={activeSection === link.id ? styles.active : undefined} href={link.href} key={link.href} aria-current={activeSection === link.id ? "page" : undefined} onClick={() => handleNavigation(link.id)}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

@@ -2,7 +2,7 @@
 
 Portfólio profissional de **Descomplica Dev Dan**, desenvolvedor web e analista de sistemas. A aplicação apresenta sua trajetória, projetos, competências e formas de contato por meio de uma interface inspirada em terminais, com identidade visual escura e detalhes em verde neon.
 
-> **Status:** em desenvolvimento. A Home, o Header, o Hero e a primeira versão da seção Sobre estão implementados. Projetos, Skills, Experiências, Contato e Footer ainda fazem parte do roadmap.
+> **Status:** em desenvolvimento. A Home, o Header, o Hero, a seção Sobre e a primeira versão da página Projetos estão implementados. Skills, Experiências, Contato e Footer ainda fazem parte do roadmap.
 
 ## Visão geral
 
@@ -22,6 +22,7 @@ O projeto foi iniciado para reunir experiências e trabalhos em uma aplicação 
 - Seção Sobre com apresentação e cards de especialidades.
 - Background Matrix com sequências binárias pseudoaleatórias.
 - Terminal animado com múltiplos códigos e realce de sintaxe.
+- Página dedicada de projetos com cards responsivos e conteúdo demonstrativo.
 
 ## Tecnologias
 
@@ -47,7 +48,10 @@ src/
 ├── app/
 │   ├── globals.css
 │   ├── layout.tsx
-│   └── page.tsx
+│   ├── page.tsx
+│   └── projetos/
+│       ├── page.module.css
+│       └── page.tsx
 └── components/
     ├── About/
     │   ├── About.module.css
@@ -130,7 +134,7 @@ O build atual gera a rota `/` como conteúdo estático.
 - O texto da seção Sobre é uma primeira versão e precisa de revisão final.
 - Ainda não há suíte automatizada de testes.
 - Ainda não há ambiente público de demonstração.
-- Apenas as seções Início e Sobre foram implementadas.
+- A página Projetos ainda utiliza dados demonstrativos e não possui links para cases reais.
 
 ## Roadmap
 
@@ -142,7 +146,8 @@ O build atual gera a rota `/` como conteúdo estático.
 - [x] Adicionar animações acessíveis e terminal com syntax highlighting.
 - [ ] Revisar o conteúdo definitivo da seção Sobre.
 - [ ] Adicionar links reais e currículo.
-- [ ] Criar a seção Projetos.
+- [x] Criar a estrutura inicial da página Projetos.
+- [ ] Substituir os cards demonstrativos pelos projetos reais.
 - [ ] Criar a seção Skills.
 - [ ] Criar a seção Experiências.
 - [ ] Criar a seção Contato e o Footer.

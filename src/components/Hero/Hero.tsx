@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./Hero.module.css";
 
 const socialLinks = [
@@ -70,9 +71,9 @@ export function Hero() {
         </p>
 
         <div className={styles.buttons}>
-          <a className={styles.primaryButton} href="#projetos">
+          <Link className={styles.primaryButton} href="/projetos">
             Conheça meus projetos <span aria-hidden="true">→</span>
-          </a>
+          </Link>
           <a className={styles.secondaryButton} href="#sobre">
             Sobre mim
             <Image src="/assets/person-fill.svg" alt="" width={18} height={18} />
