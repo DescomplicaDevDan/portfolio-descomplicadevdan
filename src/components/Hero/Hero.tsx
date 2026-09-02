@@ -8,6 +8,29 @@ const socialLinks = [
   { label: "E-mail", icon: "/assets/email-icon.png", href: "#" },
 ];
 
+const highlights = [
+  {
+    icon: "/assets/code-slash.svg",
+    value: "10+",
+    label: "Projetos concluídos",
+  },
+  {
+    icon: "/assets/rocket-takeoff.svg",
+    value: "100%",
+    label: "Dedicação em cada linha de código",
+  },
+  {
+    icon: "/assets/light-ideia.png",
+    value: "Soluções",
+    label: "Focadas em problemas reais",
+  },
+  {
+    icon: "/assets/people-fill.svg",
+    value: "Pessoas",
+    label: "No centro de cada decisão",
+  },
+];
+
 export function Hero() {
   return (
     <section className={styles.hero} id="inicio">
@@ -50,6 +73,20 @@ export function Hero() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className={styles.highlights} aria-label="Destaques profissionais">
+        {highlights.map((highlight) => (
+          <article className={styles.highlight} key={highlight.value}>
+            <span className={styles.highlightIcon}>
+              <Image src={highlight.icon} alt="" width={34} height={34} />
+            </span>
+            <div>
+              <strong>{highlight.value}</strong>
+              <p>{highlight.label}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

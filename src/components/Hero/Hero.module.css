@@ -1,6 +1,9 @@
 .hero {
   position: relative;
   min-height: calc(100vh - var(--header-height));
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--color-background) url("/assets/Background-Home.png") center / cover no-repeat;
 }
@@ -16,7 +19,8 @@
   z-index: 1;
   width: min(calc(100% - 48px), var(--content-width));
   margin: 0 auto;
-  padding: clamp(90px, 11vh, 150px) 0 72px;
+  flex: 1;
+  padding: clamp(55px, 8vh, 100px) 0 46px;
 }
 
 .terminal {
@@ -31,7 +35,7 @@
   flex-direction: column;
   width: fit-content;
   color: var(--color-accent);
-  font-size: clamp(4rem, 7vw, 7.5rem);
+  font-size: clamp(3.5rem, 5.8vw, 6.5rem);
   line-height: 0.94;
   letter-spacing: -0.06em;
   text-shadow: 0 0 28px rgb(66 232 98 / 22%);
@@ -46,9 +50,14 @@
   text-shadow: none;
 }
 
+.nameLine {
+  display: block;
+}
+
 .cursor {
   margin-left: 8px;
   font-weight: 300;
+  animation: blink 900ms steps(1, end) infinite;
 }
 
 .role {
@@ -90,6 +99,7 @@
   text-transform: uppercase;
   font-size: 0.88rem;
   font-weight: 650;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
 
 .primaryButton {
@@ -106,6 +116,18 @@
 .secondaryButton {
   border: 1px solid var(--color-accent-strong);
   color: #e1e5e3;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.socialLinks a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .socialArea {
@@ -132,6 +154,87 @@
   display: grid;
   place-items: center;
   background: rgb(3 10 7 / 70%);
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.socialLinks a:hover {
+  background: rgb(35 190 69 / 16%);
+  box-shadow: 0 0 18px rgb(66 232 98 / 18%);
+  transform: translateY(-2px);
+}
+
+.highlights {
+  position: relative;
+  z-index: 2;
+  width: min(calc(100% - 48px), 1080px);
+  min-height: 130px;
+  margin: 0 auto;
+  padding: 22px 28px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgb(3 10 7 / 82%);
+  backdrop-filter: blur(14px);
+}
+
+.highlight {
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.highlight + .highlight {
+  border-left: 1px solid rgb(255 255 255 / 9%);
+}
+
+.highlightIcon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border: 1px solid var(--color-accent-strong);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.highlightIcon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(78%) sepia(80%) saturate(804%) hue-rotate(71deg) brightness(99%) contrast(88%);
+}
+
+.highlight strong {
+  color: var(--color-accent);
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.highlight p {
+  max-width: 155px;
+  margin-top: 8px;
+  color: #9da6a1;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+@keyframes blink {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+  .primaryButton, .secondaryButton, .socialLinks a { transition: none; }
+}
+
+@media (max-width: 1050px) {
+  .highlights { grid-template-columns: repeat(2, 1fr); }
+  .highlight:nth-child(3) { border-left: 0; }
+  .highlight:nth-child(n + 3) { border-top: 1px solid rgb(255 255 255 / 9%); }
 }
 
 .socialLinks img {
@@ -153,6 +256,8 @@
     width: min(calc(100% - 36px), var(--content-width));
     padding-top: 72px;
   }
+
+  .highlights { width: min(calc(100% - 36px), 1080px); }
 }
 
 @media (max-width: 560px) {
@@ -164,4 +269,13 @@
   .secondaryButton {
     width: 100%;
   }
+
+  .hero { padding-bottom: 18px; }
+  .content { padding-top: 48px; }
+  .content h1 { font-size: clamp(3rem, 17vw, 4.5rem); }
+  .content h1 > span:first-child { font-size: clamp(1.8rem, 9vw, 2.5rem); }
+  .description { margin-top: 28px; }
+  .highlights { grid-template-columns: 1fr; padding: 12px 20px; }
+  .highlight { padding: 18px 6px; }
+  .highlight + .highlight { border-left: 0; border-top: 1px solid rgb(255 255 255 / 9%); }
 }
