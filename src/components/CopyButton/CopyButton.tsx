@@ -7,7 +7,7 @@ type CopyButtonProps = {
   label: string;
   successLabel?: string;
   className?: string;
-  children: ReactNode;
+  children: ReactNode | ((copied: boolean) => ReactNode);
 };
 
 async function copyToClipboard(value: string) {
@@ -48,10 +48,15 @@ export function CopyButton({
   }
 
   return (
-    <button type="button" className={className} onClick={handleCopy} aria-label={copied ? successLabel : label}>
-      {children}
+    <button
+      type="button"
+      className={className}
+      onClick={handleCopy}
+      aria-label={copied ? successLabel : label}
+      data-copied={copied}
+    >
+      {typeof children === "function" ? children(copied) : children}
       <span className="sr-only" aria-live="polite">{copied ? successLabel : ""}</span>
     </button>
   );
 }
-

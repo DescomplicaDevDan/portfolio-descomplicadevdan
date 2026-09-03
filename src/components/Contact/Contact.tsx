@@ -60,9 +60,13 @@ export function Contact() {
               successLabel="E-mail copiado"
               className={`${styles.channel} ${styles.copyChannel}`}
             >
-              <span className={styles.channelIcon}><ContactIcon type="email" /></span>
-              <span><small>E-mail</small><strong>{contact.email}</strong></span>
-              <span className={styles.copyHint} aria-hidden="true">Copiar</span>
+              {(copied) => <>
+                <span className={styles.channelIcon}><ContactIcon type="email" /></span>
+                <span><small>E-mail</small><strong>{contact.email}</strong></span>
+                <span className={styles.copyHint} aria-hidden="true">
+                  {copied ? "✓ Copiado" : "Copiar"}
+                </span>
+              </>}
             </CopyButton>
             <div className={styles.channel}>
               <a href={contact.phone.whatsappUrl} className={styles.channelMain} target="_blank" rel="noreferrer">
@@ -75,7 +79,7 @@ export function Contact() {
                 successLabel="WhatsApp copiado"
                 className={styles.copyAction}
               >
-                <span aria-hidden="true">Copiar</span>
+                {(copied) => <span aria-hidden="true">{copied ? "✓ Copiado" : "Copiar"}</span>}
               </CopyButton>
             </div>
             <a href={contact.githubUrl} className={styles.channel} target="_blank" rel="noreferrer">

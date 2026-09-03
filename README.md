@@ -44,7 +44,7 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 - CTAs para projetos e apresentação profissional.
 - Indicadores de atuação, links para GitHub e LinkedIn, acesso ao WhatsApp e cópia direta de e-mail e telefone.
 - Formulário de contato que gera uma conversa de WhatsApp com os dados preenchidos.
-- Feedback acessível após ações de cópia para a área de transferência.
+- Feedback visual e acessível com confirmação temporária após ações de cópia.
 - Seção Sobre com especialidades e terminal animado.
 - Realce de sintaxe sem dependência externa.
 - Seção Skills orientada por configuração.

@@ -225,6 +225,7 @@
 
 .socialLinks a,
 .socialLinks button {
+  position: relative;
   width: 48px;
   height: 48px;
   border: 1px solid var(--color-accent-strong);
@@ -242,6 +243,38 @@
 .socialLinks button:hover {
   box-shadow: inset 0 0 14px rgb(66 232 98 / 22%), 0 0 18px rgb(66 232 98 / 32%);
   transform: translateY(-3px) scale(1.04);
+}
+
+.socialLinks button[data-copied="true"] {
+  border-color: var(--color-accent);
+  background: linear-gradient(145deg, rgb(66 232 98 / 30%), rgb(3 18 9 / 96%));
+  box-shadow: inset 0 0 18px rgb(66 232 98 / 20%), 0 0 20px rgb(66 232 98 / 38%);
+}
+
+.socialLinks button::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+  font-size: 1.45rem;
+  font-weight: 850;
+  line-height: 1;
+  text-shadow: 0 0 10px rgb(66 232 98 / 70%);
+  opacity: 0;
+  transform: scale(0.65) rotate(-10deg);
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.socialLinks button[data-copied="true"] svg {
+  opacity: 0;
+  transform: scale(0.65);
+}
+
+.socialLinks button[data-copied="true"]::after {
+  opacity: 1;
+  transform: scale(1) rotate(0);
 }
 
 .highlights {
@@ -367,6 +400,7 @@
   .cursor { opacity: 1; animation: none; }
   .primaryButton, .secondaryButton, .socialLinks a, .socialLinks button { transition: none; }
   .hero::before, .hero::after, .content h1, .highlightIcon { animation: none; }
+  .socialLinks button::after { transition: none; }
   .primaryButton::after, .secondaryButton::after { display: none; }
 }
 
