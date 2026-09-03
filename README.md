@@ -46,7 +46,7 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 - Formulário de contato que gera uma conversa de WhatsApp com os dados preenchidos.
 - Feedback visual e acessível com confirmação temporária após ações de cópia.
 - Marca vetorial reutilizável aplicada ao Header e ao Footer.
-- Footer responsivo com CTA, navegação, canais profissionais, disponibilidade e retorno ao topo.
+- Footer responsivo com mensagem de encerramento, navegação, canais profissionais, disponibilidade e retorno ao topo.
 - Seção Sobre com especialidades e terminal animado.
 - Realce de sintaxe sem dependência externa.
 - Seção Skills orientada por configuração.

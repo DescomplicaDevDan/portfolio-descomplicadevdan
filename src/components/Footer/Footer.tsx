@@ -28,9 +28,6 @@ export function Footer() {
             <p className={styles.availability}><i /> Disponível para projetos e oportunidades</p>
             <h2>Vamos construir algo que <span>faça sentido?</span></h2>
           </div>
-          <a className={styles.ctaButton} href={contact.phone.whatsappUrl} target="_blank" rel="noreferrer">
-            Iniciar conversa <span aria-hidden="true">↗</span>
-          </a>
         </div>
 
         <div className={styles.content}>
@@ -85,4 +82,3 @@ export function Footer() {
     </footer>
   );
 }
-

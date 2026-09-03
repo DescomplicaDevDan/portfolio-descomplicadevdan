@@ -38,12 +38,10 @@
 }
 
 .cta {
-  min-height: 220px;
-  padding: 52px 0;
+  min-height: 200px;
+  padding: 48px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 48px;
   border-bottom: 1px solid rgb(255 255 255 / 8%);
 }
 
@@ -75,28 +73,6 @@
 }
 
 .cta h2 span { color: #42e862; }
-
-.ctaButton {
-  min-height: 56px;
-  padding: 0 24px;
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  border: 1px solid #42e862;
-  border-radius: 12px;
-  color: #061109;
-  background: linear-gradient(135deg, #55ef73, #2bd653);
-  box-shadow: 0 12px 34px rgb(42 218 83 / 19%);
-  font-size: 0.86rem;
-  font-weight: 780;
-  text-transform: uppercase;
-  transition: transform 170ms ease, box-shadow 170ms ease;
-}
-
-.ctaButton:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgb(42 218 83 / 28%); }
-.ctaButton span { font-size: 1.15rem; }
 
 .content {
   padding: 64px 0 70px;
@@ -206,8 +182,7 @@
 
 @media (max-width: 700px) {
   .container { width: min(calc(100% - 36px), 1200px); }
-  .cta { align-items: flex-start; flex-direction: column; gap: 28px; }
-  .ctaButton { width: 100%; }
+  .cta { min-height: 180px; align-items: flex-start; }
   .content { grid-template-columns: repeat(2, 1fr); }
   .brandColumn { max-width: none; grid-column: 1 / -1; }
   .contactColumn { grid-column: auto; }
@@ -224,6 +199,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .availability i { animation: none; }
-  .ctaButton, .column a, .column a span, .backToTop span { transition: none; }
+  .column a, .column a span, .backToTop span { transition: none; }
 }
-
