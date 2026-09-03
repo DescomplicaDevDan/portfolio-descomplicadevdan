@@ -4,7 +4,7 @@
   overflow: hidden;
   --pointer-x: 50%;
   --pointer-y: 52%;
-  padding: 104px 0 120px;
+  padding: 0px 0 120px;
   color: #f4f7f5;
   background: linear-gradient(180deg, #020604, #020a06 52%, #020604);
 }
