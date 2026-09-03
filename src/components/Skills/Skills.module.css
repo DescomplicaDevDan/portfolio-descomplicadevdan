@@ -1,0 +1,227 @@
+.skills {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --pointer-x: 50%;
+  --pointer-y: 52%;
+  padding: 104px 0 120px;
+  color: #f4f7f5;
+  background: linear-gradient(180deg, #020604, #020a06 52%, #020604);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: min(calc(100% - 48px), 1200px);
+  margin: 0 auto;
+}
+
+.ambientBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(55 235 103 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(55 235 103 / 4%) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(transparent, #000 20%, #000 82%, transparent);
+}
+
+.ambientBackground::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(390px circle at var(--pointer-x) var(--pointer-y), rgb(48 239 98 / 17%), transparent 68%);
+}
+
+.ambientBackground::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -28%;
+  height: 28%;
+  background: linear-gradient(transparent, rgb(66 240 110 / 7%), transparent);
+  animation: scanField 7s linear infinite;
+}
+
+.dataParticles,
+.dataParticles i {
+  position: absolute;
+}
+
+.dataParticles { inset: 0; }
+
+.dataParticles i {
+  top: -70px;
+  left: var(--particle-left);
+  width: 1px;
+  height: var(--particle-size);
+  opacity: 0;
+  background: linear-gradient(transparent, #44f477);
+  box-shadow: 0 0 8px rgb(68 244 119 / 55%);
+  animation: dataDrop var(--particle-duration) linear var(--particle-delay) infinite;
+}
+
+.orbLeft,
+.orbRight {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  opacity: 0.13;
+  filter: blur(85px);
+  background: #18cf55;
+  animation: driftOrb 10s ease-in-out infinite alternate;
+}
+
+.orbLeft { left: -180px; top: 12%; }
+.orbRight { right: -190px; bottom: -25%; animation-delay: -4s; }
+
+.heading {
+  max-width: 760px;
+  margin-bottom: 58px;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: #41ef70;
+  font: 0.9rem var(--font-geist-mono), monospace;
+}
+
+.eyebrow i {
+  display: inline-block;
+  width: 8px;
+  height: 17px;
+  margin-left: 6px;
+  vertical-align: -3px;
+  background: #42ed70;
+}
+
+.heading h2 {
+  color: #f3f5f4;
+  font-size: clamp(2.7rem, 4vw, 3.65rem);
+  line-height: 1.07;
+  letter-spacing: -0.052em;
+}
+
+.heading h2 span {
+  color: #37e966;
+}
+
+.skillsRow {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skillsRow:hover .skillItem:not(:hover) {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.skillItem {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  color: #dce4df;
+  text-align: center;
+  font: 500 0.78rem var(--font-geist-sans), sans-serif;
+  transition: transform 220ms ease, opacity 220ms ease, color 220ms ease;
+}
+
+.skillItem:hover {
+  z-index: 2;
+  color: #fff;
+  transform: translateY(-7px) scale(1.07);
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 0 transparent);
+  animation: floatLogo 4.2s ease-in-out infinite;
+  transition: filter 220ms ease;
+}
+
+.skillItem:hover .icon {
+  filter: brightness(1.16) saturate(1.14) drop-shadow(0 0 4px currentColor);
+}
+.skillItem:nth-child(2n) .icon { animation-delay: -1.3s; }
+.skillItem:nth-child(3n) .icon { animation-delay: -2.6s; }
+.skillItem:nth-child(5n) .icon { animation-delay: -3.4s; }
+
+.html .icon { color: #e85d2a; }
+.css .icon { color: #347ee9; }
+.javascript .icon { color: #f5dc1d; }
+.typescript .icon { color: #3c91f3; }
+.react .icon { color: #61dafb; }
+.api .icon { color: #3cc5e9; }
+.python .icon { color: #55a8de; }
+.java .icon { color: #f05c45; }
+.git .icon { color: #f05032; }
+.github .icon { color: #f4f7f5; }
+
+@keyframes dataDrop {
+  0% { opacity: 0; transform: translateY(0); }
+  12%, 72% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(720px); }
+}
+
+@keyframes scanField {
+  to { transform: translateY(580%); }
+}
+
+@keyframes driftOrb {
+  to { transform: translate3d(70px, 26px, 0) scale(1.12); }
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 1050px) {
+  .skillsRow {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    row-gap: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills { padding: 82px 0 96px; }
+  .container { width: min(calc(100% - 36px), 1200px); }
+  .heading { margin-bottom: 46px; }
+  .heading h2 { font-size: 2.5rem; }
+  .heading h2 br { display: none; }
+  .eyebrow { font-size: 0.75rem; }
+  .skillsRow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 28px; }
+  .icon { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambientBackground::after,
+  .dataParticles i,
+  .orbLeft,
+  .orbRight,
+  .icon {
+    animation: none;
+  }
+
+  .skillItem,
+  .icon {
+    transition: none;
+  }
+}

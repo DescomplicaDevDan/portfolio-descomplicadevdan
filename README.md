@@ -2,7 +2,7 @@
 
 Portfólio profissional de **Descomplica Dev Dan**, desenvolvedor web e analista de sistemas. A aplicação apresenta sua trajetória, projetos, competências e formas de contato por meio de uma interface inspirada em terminais, com identidade visual escura e detalhes em verde neon.
 
-> **Status:** em desenvolvimento. A Home, o Header, o Hero, a seção Sobre e a primeira versão da página Projetos estão implementados. Skills, Experiências, Contato e Footer ainda fazem parte do roadmap.
+> **Status:** em desenvolvimento. A Home, o Header, o Hero, as seções Sobre e Skills e a primeira versão da página Projetos estão implementados. Experiências, Contato e Footer ainda fazem parte do roadmap.
 
 ## Visão geral
 
@@ -23,6 +23,7 @@ O projeto foi iniciado para reunir experiências e trabalhos em uma aplicação 
 - Background Matrix com sequências binárias pseudoaleatórias.
 - Terminal animado com múltiplos códigos e realce de sintaxe.
 - Página dedicada de projetos com cards responsivos e conteúdo demonstrativo.
+- Seção Skills com tecnologias, níveis demonstrativos e painel de princípios.
 
 ## Tecnologias
 
@@ -60,9 +61,12 @@ src/
     ├── Header/
     │   ├── Header.module.css
     │   └── Header.tsx
-    └── Hero/
-        ├── Hero.module.css
-        └── Hero.tsx
+    ├── Hero/
+    │   ├── Hero.module.css
+    │   └── Hero.tsx
+    └── Skills/
+        ├── Skills.module.css
+        └── Skills.tsx
 ```
 
 Recursos estáticos e imagens ficam em `public/assets`.
@@ -148,7 +152,8 @@ O build atual gera a rota `/` como conteúdo estático.
 - [ ] Adicionar links reais e currículo.
 - [x] Criar a estrutura inicial da página Projetos.
 - [ ] Substituir os cards demonstrativos pelos projetos reais.
-- [ ] Criar a seção Skills.
+- [x] Criar a estrutura inicial da seção Skills.
+- [ ] Revisar os níveis e tecnologias da seção Skills.
 - [ ] Criar a seção Experiências.
 - [ ] Criar a seção Contato e o Footer.
 - [ ] Adicionar testes automatizados.

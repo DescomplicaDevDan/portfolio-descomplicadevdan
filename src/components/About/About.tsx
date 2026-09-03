@@ -46,7 +46,7 @@ export function About() {
         <div className={styles.mainGrid}>
           <div className={styles.leftColumn}>
             <div className={styles.heading}>
-              <p className={styles.eyebrow}>01. sobre_mim</p>
+              <p className={styles.eyebrow}>Sobre_mim</p>
               <h2 id="about-title">Tecnologia com propósito<span>.</span></h2>
               <p>
                 Gosto de transformar desafios complexos em experiências digitais simples,
