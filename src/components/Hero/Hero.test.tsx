@@ -11,11 +11,15 @@ describe("Hero", () => {
     expect(screen.getByRole("link", { name: /sobre mim/i })).toHaveAttribute("href", "#sobre");
   });
 
-  it("oferece nomes acessíveis para todos os canais sociais", () => {
+  it("oferece links funcionais para os canais configurados", () => {
     render(<Hero />);
 
-    for (const name of ["GitHub", "LinkedIn", "WhatsApp", "E-mail"]) {
-      expect(screen.getByRole("link", { name })).toBeInTheDocument();
-    }
+    expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute("href", "https://github.com/DescomplicaDevDan");
+    expect(screen.getByRole("link", { name: "WhatsApp" })).toHaveAttribute("href", expect.stringContaining("wa.me/5522992090717"));
+    expect(screen.getByRole("button", { name: "Copiar e-mail" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/danilo-texeira-dev/",
+    );
   });
 });

@@ -13,7 +13,7 @@ Os principais riscos atuais são funcionais e de experiência: existem destinos 
 | Prioridade | Área | Evidência | Impacto | Próxima ação |
 | --- | --- | --- | --- | --- |
 | Alta | Responsividade | `Descomplica` mede cerca de 460 px em viewport útil de 375 px e é cortado pelo `overflow: hidden` | Nome profissional incompleto em celulares | Ajustar tipografia/animação do Hero e criar regressão visual |
-| Alta | Links sociais | GitHub, LinkedIn, WhatsApp e e-mail usam `href="#"` | CTAs não levam a nenhum canal real | Inserir URLs reais e testar destino/protocolo |
+| Resolvido | Canais sociais | GitHub e LinkedIn possuem destinos reais; WhatsApp abre a conversa; e-mail e telefone oferecem cópia direta | Evita CTAs sem destino e explicita cada ação | Manter regressões unitárias e E2E dos quatro canais |
 | Alta | Navegação | `#experiencias` e `#contato` não existem; “Vamos conversar” também aponta para contato inexistente | Links não executam a ação prometida | Criar as seções ou ocultar temporariamente os links |
 | Média | Tema | O controle muda o Header e variáveis globais, mas as seções mantêm fundos escuros fixos | Tema claro visualmente inconsistente | Definir tokens de superfície e aplicar em todas as seções |
 | Média | Menu móvel | Menu abre e bloqueia o scroll, mas o conteúdo de fundo continua exposto à árvore de acessibilidade e não há fechamento por `Escape` | Navegação por teclado/leitor de tela pode escapar do menu | Implementar gerenciamento de foco e `Escape` |
@@ -51,7 +51,7 @@ Execução final realizada em 2 de setembro de 2026:
 | Acessibilidade axe | `/` e `/projetos` sem violações graves/críticas após hidratação |
 | Vulnerabilidades npm | 0 conhecidas após remoção do Lighthouse CI |
 
-Dos oito cenários Playwright, quatro registram defeitos conhecidos como falhas esperadas: destinos internos ausentes, links sociais provisórios, título mobile cortado e uso de `aria-label` no `<pre>` sem papel ARIA explícito. Eles permanecem visíveis no relatório e devem virar regressões obrigatórias quando cada correção for implementada.
+Dos oito cenários Playwright, três registram defeitos conhecidos como falhas esperadas: destino interno de Experiências ausente, título mobile cortado e uso de `aria-label` no `<pre>` sem papel ARIA explícito. O cenário de links sociais agora é uma regressão obrigatória e valida os quatro canais configurados.
 
 Nota: a leitura posterior do log de desenvolvimento encontrou o aviso específico do Next.js sobre `data-scroll-behavior="smooth"`, registrado acima. Não houve exceção de JavaScript da aplicação.
 

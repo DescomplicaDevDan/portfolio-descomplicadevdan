@@ -201,7 +201,8 @@
 
 .primaryButton:focus-visible,
 .secondaryButton:focus-visible,
-.socialLinks a:focus-visible {
+.socialLinks a:focus-visible,
+.socialLinks button:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }
@@ -222,7 +223,8 @@
   gap: 18px;
 }
 
-.socialLinks a {
+.socialLinks a,
+.socialLinks button {
   width: 48px;
   height: 48px;
   border: 1px solid var(--color-accent-strong);
@@ -231,10 +233,13 @@
   place-items: center;
   background: linear-gradient(145deg, rgb(35 190 69 / 12%), rgb(3 10 7 / 92%));
   box-shadow: inset 0 0 12px rgb(66 232 98 / 10%);
+  color: inherit;
+  cursor: pointer;
   transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
 }
 
-.socialLinks a:hover {
+.socialLinks a:hover,
+.socialLinks button:hover {
   box-shadow: inset 0 0 14px rgb(66 232 98 / 22%), 0 0 18px rgb(66 232 98 / 32%);
   transform: translateY(-3px) scale(1.04);
 }
@@ -360,7 +365,7 @@
   .greeting, .firstNameLine, .lastNameText { width: auto; animation: none; }
   .lastNameText { clip-path: none; }
   .cursor { opacity: 1; animation: none; }
-  .primaryButton, .secondaryButton, .socialLinks a { transition: none; }
+  .primaryButton, .secondaryButton, .socialLinks a, .socialLinks button { transition: none; }
   .hero::before, .hero::after, .content h1, .highlightIcon { animation: none; }
   .primaryButton::after, .secondaryButton::after { display: none; }
 }
@@ -379,7 +384,8 @@
   transition: filter 160ms ease, transform 160ms ease;
 }
 
-.socialLinks a:hover svg {
+.socialLinks a:hover svg,
+.socialLinks button:hover svg {
   filter: drop-shadow(0 0 8px rgb(66 232 98 / 70%));
   transform: scale(1.08);
 }

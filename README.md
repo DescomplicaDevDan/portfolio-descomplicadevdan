@@ -4,7 +4,7 @@ Portfólio profissional construído com Next.js e React para apresentar experiê
 
 O produto combina uma identidade visual inspirada em terminais com uma arquitetura orientada a componentes, geração estática, responsividade, acessibilidade e uma estratégia automatizada de qualidade.
 
-> **Status do produto:** em desenvolvimento ativo. A Home, as seções Sobre e Skills e a primeira versão da página Projetos estão implementadas. Experiências, Contato, Footer e os cases definitivos permanecem no roadmap.
+> **Status do produto:** em desenvolvimento ativo. A Home, as seções Sobre, Skills e Contato e a primeira versão da página Projetos estão implementadas. Experiências, Footer e os cases definitivos permanecem no roadmap.
 
 ## Visão executiva
 
@@ -15,7 +15,7 @@ O produto combina uma identidade visual inspirada em terminais com uma arquitetu
 | Renderização | Server Components por padrão e rotas estáticas |
 | Estilização | CSS Modules, tokens globais e CSS responsivo |
 | Testes | Vitest, React Testing Library, Playwright e axe-core |
-| Cobertura | 84,29% de linhas e 78% de branches |
+| Cobertura | 84,44% de linhas e 75,80% de branches na última execução registrada |
 | Qualidade | ESLint, TypeScript, build e testes automatizados |
 | Segurança | 0 vulnerabilidades conhecidas no último `npm audit` |
 | Integração contínua | GitHub Actions com relatórios e evidências |
@@ -42,7 +42,9 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 - Preferência de tema persistida em `localStorage`.
 - Hero responsivo com arte personalizada e animação sequencial.
 - CTAs para projetos e apresentação profissional.
-- Indicadores de atuação e links sociais preparados para configuração.
+- Indicadores de atuação, links para GitHub e LinkedIn, acesso ao WhatsApp e cópia direta de e-mail e telefone.
+- Formulário de contato que gera uma conversa de WhatsApp com os dados preenchidos.
+- Feedback acessível após ações de cópia para a área de transferência.
 - Seção Sobre com especialidades e terminal animado.
 - Realce de sintaxe sem dependência externa.
 - Seção Skills orientada por configuração.
@@ -52,14 +54,14 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 
 ### Em evolução
 
-- Projetos e URLs sociais ainda usam conteúdo demonstrativo.
+- Projetos ainda usam conteúdo demonstrativo.
 - Currículo ainda não está disponível para download.
-- Seções Experiências, Contato e Footer ainda não foram implementadas.
+- Seções Experiências e Footer ainda não foram implementadas.
 - O tema claro precisa ser propagado de forma consistente para todas as superfícies.
 
 ## Arquitetura
 
-O App Router organiza as rotas e mantém componentes como Server Components sempre que não dependem de estado, efeitos ou APIs do navegador. Os limites `"use client"` ficam restritos às interações do Header, do terminal animado e da seção Skills.
+O App Router organiza as rotas e mantém componentes como Server Components sempre que não dependem de estado, efeitos ou APIs do navegador. Os limites `"use client"` ficam restritos às interações do Header, do terminal animado, da seção Skills, do formulário de contato e da cópia para a área de transferência.
 
 ```mermaid
 flowchart TD
@@ -70,9 +72,14 @@ flowchart TD
     Home --> Hero[Hero — Server Component]
     Home --> About[About — Server Component]
     Home --> Skills[Skills — Client Component]
+    Home --> Contact[Contact — Client Component]
     About --> Terminal[CodeTerminal — Client Component]
     Skills --> Config[skills.config.ts]
+    Contact --> ContactConfig[contact.ts]
+    Contact --> Clipboard[CopyButton — Client Component]
     Header --> BrowserAPIs[localStorage + IntersectionObserver]
+    Clipboard --> ClipboardAPI[Clipboard API]
+    Contact --> WhatsApp[WhatsApp Web]
 ```
 
 ### Estrutura do repositório
@@ -93,11 +100,15 @@ flowchart TD
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   └── components/
-│       ├── About/
-│       ├── Header/
-│       ├── Hero/
-│       └── Skills/
+│   ├── components/
+│   │   ├── About/
+│   │   ├── Contact/
+│   │   ├── CopyButton/
+│   │   ├── Header/
+│   │   ├── Hero/
+│   │   └── Skills/
+│   └── config/
+│       └── contact.ts
 ├── tests/
 │   └── e2e/
 ├── playwright.config.ts
@@ -115,6 +126,9 @@ flowchart TD
 | Animações em CSS | Reduzir dependências e manter controle fino | Menor bundle e suporte direto a movimento reduzido |
 | Skills orientada por dados | Centralizar nome, ícone e classe de cada tecnologia | Inclusão de novas skills sem duplicar marcação |
 | Propriedades CSS para ponteiro | Evitar estado React em eventos de alta frequência | Menos renderizações durante a interação |
+| Dados de contato centralizados | Manter e-mail, telefone e perfis em uma única fonte | Alterações de canais sem duplicação entre Hero e Contato |
+| WhatsApp como destino do formulário | Disponibilizar contato funcional sem depender de um backend ou serviço externo | A mensagem é montada no navegador e confirmada pelo visitante no WhatsApp |
+| Componente reutilizável de cópia | Padronizar Clipboard API, fallback e feedback acessível | E-mail e telefone podem ser copiados sem abrir outro aplicativo |
 | Vitest + Testing Library | Testar comportamento e semântica dos componentes | Feedback rápido e testes menos acoplados |
 | Playwright + axe-core | Validar fluxos e acessibilidade no navegador real | Cobertura de integração próxima do uso real |
 | Falhas esperadas rastreadas | Manter defeitos conhecidos visíveis sem tornar a suíte instável | Correções futuras já possuem especificação de regressão |
@@ -150,7 +164,7 @@ A suíte prioriza comportamento observável e utiliza cada ferramenta no nível 
 
 | Camada | Escopo | Exemplos |
 | --- | --- | --- |
-| Unidade e componente | Renderização, semântica e interações isoladas | Header, Hero, About, CodeTerminal e Skills |
+| Unidade e componente | Renderização, semântica e interações isoladas | Header, Hero, About, Contact, CopyButton, CodeTerminal e Skills |
 | Integração | Composição das páginas e contratos entre componentes | Home e Projetos |
 | E2E | Jornadas executadas no navegador | Navegação, rota de projetos e persistência do tema |
 | Acessibilidade | Regras WCAG automatizáveis | Home e Projetos com axe-core |
@@ -161,15 +175,15 @@ A suíte prioriza comportamento observável e utiliza cada ferramenta no nível 
 
 | Métrica | Resultado |
 | --- | ---: |
-| Arquivos de teste Vitest | 7 |
-| Testes de unidade/componente | 12 aprovados |
+| Arquivos de teste Vitest | 9 |
+| Testes de unidade/componente | 16 aprovados |
 | Cenários Playwright | 8 concluídos |
-| Cobertura de linhas | 84,29% |
-| Cobertura de statements | 82,01% |
-| Cobertura de funções | 88,46% |
-| Cobertura de branches | 78% |
+| Cobertura de linhas | 84,44% |
+| Cobertura de statements | 82,35% |
+| Cobertura de funções | 87,71% |
+| Cobertura de branches | 75,80% |
 
-Quatro cenários E2E representam defeitos conhecidos e estão marcados com `test.fail()`. Eles são executados como falhas esperadas e devem ser convertidos em testes de regressão obrigatórios assim que os respectivos problemas forem corrigidos.
+Três cenários E2E representam defeitos conhecidos e estão marcados com `test.fail()`. Eles são executados como falhas esperadas e devem ser convertidos em testes de regressão obrigatórios assim que os respectivos problemas forem corrigidos. O cenário dos canais sociais já foi convertido em regressão obrigatória.
 
 Consulte os documentos completos:
 
@@ -282,6 +296,7 @@ O projeto inclui:
 
 - estrutura semântica e hierarquia de títulos;
 - nomes acessíveis para controles e links;
+- confirmação acessível para ações de cópia;
 - foco visível para navegação por teclado;
 - conteúdo decorativo oculto de tecnologias assistivas;
 - nome completo disponível para leitores de tela durante a animação;
@@ -301,8 +316,7 @@ Essa decisão mantém o projeto seguro enquanto métricas de desempenho podem se
 | Prioridade | Item | Estado |
 | --- | --- | --- |
 | Alta | Corrigir o corte de “Descomplica” em 390 px | Rastreado por E2E |
-| Alta | Substituir links sociais provisórios | Rastreado por E2E |
-| Alta | Implementar ou remover links para Experiências e Contato | Rastreado por E2E |
+| Alta | Implementar ou remover o link para Experiências | Rastreado por E2E |
 | Média | Corrigir o contrato ARIA do terminal | Rastreado por E2E |
 | Média | Completar o tema claro | Pendente |
 | Média | Melhorar foco e fechamento por `Escape` no menu móvel | Pendente |
@@ -314,15 +328,17 @@ Essa decisão mantém o projeto seguro enquanto métricas de desempenho podem se
 
 - [x] Estruturar o projeto com Next.js, React e TypeScript.
 - [x] Implementar Header, Hero, Sobre, Skills e Projetos.
+- [x] Implementar Contato com GitHub, LinkedIn, WhatsApp e cópia de dados.
+- [x] Direcionar o formulário preenchido para uma conversa no WhatsApp.
 - [x] Aplicar responsividade e suporte a movimento reduzido.
 - [x] Configurar testes de unidade, integração, E2E e acessibilidade.
 - [x] Definir limites mínimos de cobertura.
 - [x] Configurar pipeline de qualidade no GitHub Actions.
 - [x] Documentar auditoria, resultados e dívida técnica.
 - [ ] Corrigir os defeitos conhecidos protegidos por testes.
-- [ ] Adicionar links profissionais e currículo.
+- [ ] Disponibilizar o currículo para download.
 - [ ] Publicar projetos e cases reais.
-- [ ] Criar as seções Experiências, Contato e Footer.
+- [ ] Criar as seções Experiências e Footer.
 - [ ] Adicionar Open Graph, sitemap e robots.
 - [ ] Executar auditoria manual completa de acessibilidade.
 - [ ] Estabelecer orçamento de performance.
@@ -353,4 +369,4 @@ Caso isso se torne recorrente, mantenha o clone de desenvolvimento em uma pasta 
 
 Desenvolvido por **Descomplica Dev Dan**.
 
-Os canais profissionais serão publicados quando as URLs definitivas forem configuradas.
+Canais profissionais disponíveis na interface: GitHub, LinkedIn, WhatsApp e e-mail.

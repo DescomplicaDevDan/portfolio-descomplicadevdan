@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CopyButton } from "@/components/CopyButton/CopyButton";
+import { contact } from "@/config/contact";
 import styles from "./Hero.module.css";
 
 const socialLinks = [
-  { label: "GitHub", type: "github", href: "#" },
-  { label: "LinkedIn", type: "linkedin", href: "#" },
-  { label: "WhatsApp", type: "whatsapp", href: "#" },
-  { label: "E-mail", type: "email", href: "#" },
-];
+  { label: "GitHub", type: "github", href: contact.githubUrl, external: true },
+  { label: "LinkedIn", type: "linkedin", href: contact.linkedinUrl, external: true },
+  { label: "WhatsApp", type: "whatsapp", href: contact.phone.whatsappUrl, external: true },
+  { label: "E-mail", type: "email", href: null, external: false },
+].filter((social) => social.href !== null);
 
 function SocialIcon({ type }: { type: string }) {
   const paths: Record<string, string> = {
@@ -84,10 +86,19 @@ export function Hero() {
           <p>Conecte-se comigo</p>
           <div className={styles.socialLinks}>
             {socialLinks.map((social) => (
-              <a href={social.href} key={social.label} aria-label={social.label}>
+              <a
+                href={social.href}
+                key={social.label}
+                aria-label={social.label}
+                target={social.external ? "_blank" : undefined}
+                rel={social.external ? "noreferrer" : undefined}
+              >
                 <SocialIcon type={social.type} />
               </a>
             ))}
+            <CopyButton value={contact.email} label="Copiar e-mail" successLabel="E-mail copiado">
+              <SocialIcon type="email" />
+            </CopyButton>
           </div>
         </div>
       </div>

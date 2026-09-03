@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("todos os links internos apontam para destinos existentes", async ({ page }) => {
-  test.fail(true, "Experiências e Contato ainda não existem na página.");
+  test.fail(true, "Experiências ainda não existe na página.");
   await page.goto("/");
 
   const missingTargets = await page.locator('a[href*="#"]').evaluateAll((anchors) =>
@@ -15,17 +15,17 @@ test("todos os links internos apontam para destinos existentes", async ({ page }
   expect(missingTargets).toEqual([]);
 });
 
-test("links sociais não usam destinos provisórios", async ({ page }) => {
-  test.fail(true, "Os quatro links sociais ainda usam href='#'.");
+test("canais sociais não usam ações provisórias", async ({ page }) => {
   await page.goto("/");
 
   const hrefs = await Promise.all(
-    ["GitHub", "LinkedIn", "WhatsApp", "E-mail"].map((name) =>
-      page.getByRole("link", { name }).getAttribute("href"),
+    ["GitHub", "LinkedIn", "WhatsApp"].map((name) =>
+      page.getByRole("link", { name, exact: true }).getAttribute("href"),
     ),
   );
 
   expect(hrefs).not.toContain("#");
+  await expect(page.getByRole("button", { name: "Copiar e-mail", exact: true })).toBeVisible();
 });
 
 test("título principal cabe na largura de um celular", async ({ page }) => {

@@ -17,7 +17,7 @@ O fluxo de CI gera os tipos de rota com `next typegen` antes de executar `tsc --
 ## Defeitos conhecidos rastreados
 
 1. Os links para `#experiencias` e `#contato` não encontram elementos correspondentes.
-2. GitHub, LinkedIn, WhatsApp e e-mail ainda apontam para `#`.
+2. Os quatro canais sociais possuem ações reais; abertura de links, geração de conversa e cópia são protegidas por testes unitários e E2E.
 3. O texto “Descomplica” ultrapassa a largura disponível em 390 px e é cortado.
 4. O terminal usa `aria-label` em um `<pre>` sem papel ARIA explícito.
 
