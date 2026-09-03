@@ -18,9 +18,9 @@
   gap: 32px;
 }
 
-.brand { display: flex; align-items: center; gap: 18px; color: var(--color-accent); font-family: var(--font-geist-mono), monospace; font-size: 1.35rem; font-weight: 600; white-space: nowrap; }
+.brand { display: flex; align-items: center; color: var(--color-accent); white-space: nowrap; }
 .brand { animation: brand-neon 2.8s ease-in-out infinite alternate; }
-.brand span:first-child { font-size: 1.75rem; }
+.brandLogo { width: 270px; height: auto; overflow: visible; }
 .navigation { display: flex; align-items: center; gap: clamp(24px, 3vw, 52px); height: 100%; color: var(--color-text-muted); }
 .navigation a { position: relative; display: grid; place-items: center; height: 100%; transition: color 160ms ease; }
 .navigation a:hover, .navigation a:focus-visible, .navigation .active { color: var(--color-text); }
@@ -56,10 +56,11 @@
 
 @media (max-width: 700px) {
   .content { width: min(calc(100% - 28px), var(--content-width)); }
-  .brand { gap: 10px; font-size: 1rem; }
-  .brand span:first-child { font-size: 1.35rem; }
+  .brandLogo { width: 210px; }
   .download { display: none; }
   .themeButton, .menuButton { width: 44px; height: 44px; }
 }
 
 @media (max-width: 410px) { .themeButton { display: none; } }
+
+@media (max-width: 360px) { .brandLogo { width: 184px; } }

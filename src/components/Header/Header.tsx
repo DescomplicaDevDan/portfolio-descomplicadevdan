@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
 import styles from "./Header.module.css";
 
 const links = [
@@ -69,7 +70,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.content}>
         <Link className={styles.brand} href="/#inicio" aria-label="Ir para o início" onClick={() => handleNavigation("inicio")}>
-          <span aria-hidden="true">&gt;_</span><span>sudo be_myself</span>
+          <BrandLogo className={styles.brandLogo} />
         </Link>
 
         <nav className={`${styles.navigation} ${isMenuOpen ? styles.navigationOpen : ""}`} aria-label="Navegação principal" id="primary-navigation">

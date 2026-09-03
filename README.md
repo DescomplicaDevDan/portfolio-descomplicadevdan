@@ -4,7 +4,7 @@ Portfólio profissional construído com Next.js e React para apresentar experiê
 
 O produto combina uma identidade visual inspirada em terminais com uma arquitetura orientada a componentes, geração estática, responsividade, acessibilidade e uma estratégia automatizada de qualidade.
 
-> **Status do produto:** em desenvolvimento ativo. A Home, as seções Sobre, Skills e Contato e a primeira versão da página Projetos estão implementadas. Experiências, Footer e os cases definitivos permanecem no roadmap.
+> **Status do produto:** em desenvolvimento ativo. A Home, as seções Sobre, Skills e Contato, o Footer e a primeira versão da página Projetos estão implementados. Experiências e os cases definitivos permanecem no roadmap.
 
 ## Visão executiva
 
@@ -45,6 +45,8 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 - Indicadores de atuação, links para GitHub e LinkedIn, acesso ao WhatsApp e cópia direta de e-mail e telefone.
 - Formulário de contato que gera uma conversa de WhatsApp com os dados preenchidos.
 - Feedback visual e acessível com confirmação temporária após ações de cópia.
+- Marca vetorial reutilizável aplicada ao Header e ao Footer.
+- Footer responsivo com CTA, navegação, canais profissionais, disponibilidade e retorno ao topo.
 - Seção Sobre com especialidades e terminal animado.
 - Realce de sintaxe sem dependência externa.
 - Seção Skills orientada por configuração.
@@ -56,7 +58,7 @@ O projeto centraliza a presença profissional de Danilo em uma experiência pró
 
 - Projetos ainda usam conteúdo demonstrativo.
 - Currículo ainda não está disponível para download.
-- Seções Experiências e Footer ainda não foram implementadas.
+- Seção Experiências ainda não foi implementada.
 - O tema claro precisa ser propagado de forma consistente para todas as superfícies.
 
 ## Arquitetura
@@ -73,6 +75,9 @@ flowchart TD
     Home --> About[About — Server Component]
     Home --> Skills[Skills — Client Component]
     Home --> Contact[Contact — Client Component]
+    Home --> Footer[Footer — Server Component]
+    Header --> Brand[BrandLogo — SVG Component]
+    Footer --> Brand
     About --> Terminal[CodeTerminal — Client Component]
     Skills --> Config[skills.config.ts]
     Contact --> ContactConfig[contact.ts]
@@ -102,8 +107,10 @@ flowchart TD
 │   │   └── page.tsx
 │   ├── components/
 │   │   ├── About/
+│   │   ├── BrandLogo/
 │   │   ├── Contact/
 │   │   ├── CopyButton/
+│   │   ├── Footer/
 │   │   ├── Header/
 │   │   ├── Hero/
 │   │   └── Skills/
@@ -129,6 +136,7 @@ flowchart TD
 | Dados de contato centralizados | Manter e-mail, telefone e perfis em uma única fonte | Alterações de canais sem duplicação entre Hero e Contato |
 | WhatsApp como destino do formulário | Disponibilizar contato funcional sem depender de um backend ou serviço externo | A mensagem é montada no navegador e confirmada pelo visitante no WhatsApp |
 | Componente reutilizável de cópia | Padronizar Clipboard API, fallback e feedback acessível | E-mail e telefone podem ser copiados sem abrir outro aplicativo |
+| Marca como SVG inline | Preservar nitidez e permitir estilização por contexto | O mesmo componente atende Header, Footer e futuras interfaces |
 | Vitest + Testing Library | Testar comportamento e semântica dos componentes | Feedback rápido e testes menos acoplados |
 | Playwright + axe-core | Validar fluxos e acessibilidade no navegador real | Cobertura de integração próxima do uso real |
 | Falhas esperadas rastreadas | Manter defeitos conhecidos visíveis sem tornar a suíte instável | Correções futuras já possuem especificação de regressão |
@@ -330,6 +338,7 @@ Essa decisão mantém o projeto seguro enquanto métricas de desempenho podem se
 - [x] Implementar Header, Hero, Sobre, Skills e Projetos.
 - [x] Implementar Contato com GitHub, LinkedIn, WhatsApp e cópia de dados.
 - [x] Direcionar o formulário preenchido para uma conversa no WhatsApp.
+- [x] Criar marca vetorial reutilizável e Footer profissional.
 - [x] Aplicar responsividade e suporte a movimento reduzido.
 - [x] Configurar testes de unidade, integração, E2E e acessibilidade.
 - [x] Definir limites mínimos de cobertura.
@@ -338,7 +347,7 @@ Essa decisão mantém o projeto seguro enquanto métricas de desempenho podem se
 - [ ] Corrigir os defeitos conhecidos protegidos por testes.
 - [ ] Disponibilizar o currículo para download.
 - [ ] Publicar projetos e cases reais.
-- [ ] Criar as seções Experiências e Footer.
+- [ ] Criar a seção Experiências.
 - [ ] Adicionar Open Graph, sitemap e robots.
 - [ ] Executar auditoria manual completa de acessibilidade.
 - [ ] Estabelecer orçamento de performance.
