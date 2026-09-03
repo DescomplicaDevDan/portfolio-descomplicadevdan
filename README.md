@@ -1,116 +1,214 @@
 # Descomplica Dev Dan — Portfólio
 
-Portfólio profissional de **Descomplica Dev Dan**, desenvolvedor web e analista de sistemas. A aplicação apresenta sua trajetória, projetos, competências e formas de contato por meio de uma interface inspirada em terminais, com identidade visual escura e detalhes em verde neon.
+Portfólio profissional construído com Next.js e React para apresentar experiência, competências técnicas e projetos de **Descomplica Dev Dan**, desenvolvedor web e analista de sistemas.
 
-> **Status:** em desenvolvimento. A Home, o Header, o Hero, as seções Sobre e Skills e a primeira versão da página Projetos estão implementados. Experiências, Contato e Footer ainda fazem parte do roadmap.
+O produto combina uma identidade visual inspirada em terminais com uma arquitetura orientada a componentes, geração estática, responsividade, acessibilidade e uma estratégia automatizada de qualidade.
 
-## Visão geral
+> **Status do produto:** em desenvolvimento ativo. A Home, as seções Sobre e Skills e a primeira versão da página Projetos estão implementadas. Experiências, Contato, Footer e os cases definitivos permanecem no roadmap.
 
-O projeto foi iniciado para reunir experiências e trabalhos em uma aplicação própria, responsiva e acessível. A interface utiliza animações como recurso narrativo, mantendo o conteúdo legível e oferecendo uma alternativa para usuários que preferem movimento reduzido.
+## Visão executiva
 
-### Funcionalidades disponíveis
-
-- Header fixo com transparência e desfoque.
-- Navegação por âncoras com indicação da seção ativa.
-- Menu responsivo para dispositivos móveis.
-- Alternância de tema com preferência persistida no navegador.
-- Hero com background personalizado e conteúdo responsivo.
-- Animação sequencial de digitação do nome.
-- Iluminação ambiente e efeitos neon controlados.
-- Ícones sociais vetoriais e acessíveis.
-- Indicadores profissionais com interações no hover.
-- Seção Sobre com apresentação e cards de especialidades.
-- Background Matrix com sequências binárias pseudoaleatórias.
-- Terminal animado com múltiplos códigos e realce de sintaxe.
-- Página dedicada de projetos com cards responsivos e conteúdo demonstrativo.
-- Seção Skills com dez tecnologias e ferramentas apresentadas por seus logos oficiais.
-- Fundo digital interativo que reage ao cursor, com partículas, scanline e iluminação ambiente.
-- Interações de destaque nos logos com suporte à preferência de movimento reduzido.
-
-## Tecnologias
-
-| Tecnologia | Uso |
+| Item | Estado atual |
 | --- | --- |
-| Next.js 16 | Framework, App Router e geração estática |
-| React 19 | Construção dos componentes e interações |
-| TypeScript 5 | Tipagem estática |
-| CSS Modules | Estilos isolados por componente |
-| CSS puro | Layout, responsividade e animações |
-| `next/font` | Carregamento otimizado das fontes Geist |
-| `next/image` | Otimização dos recursos visuais |
-| React Icons | Logos vetoriais das tecnologias e ícones da interface |
-| ESLint | Qualidade e análise estática |
+| Framework | Next.js 16.3.4 com App Router |
+| Interface | React 19.2.8 + TypeScript 5 |
+| Renderização | Server Components por padrão e rotas estáticas |
+| Estilização | CSS Modules, tokens globais e CSS responsivo |
+| Testes | Vitest, React Testing Library, Playwright e axe-core |
+| Cobertura | 84,29% de linhas e 78% de branches |
+| Qualidade | ESLint, TypeScript, build e testes automatizados |
+| Segurança | 0 vulnerabilidades conhecidas no último `npm audit` |
+| Integração contínua | GitHub Actions com relatórios e evidências |
 
-O Tailwind CSS permanece instalado, mas não é utilizado na interface atual. A escolha por CSS Modules mantém os estilos explícitos, isolados e sem dependência de classes utilitárias.
+## Objetivo do produto
+
+O projeto centraliza a presença profissional de Danilo em uma experiência própria, rápida e acessível. Além de apresentar informações profissionais, o repositório demonstra decisões de engenharia relevantes para aplicações modernas:
+
+- separação entre componentes de servidor e componentes interativos;
+- baixo acoplamento entre conteúdo, apresentação e comportamento;
+- animações com alternativa para movimento reduzido;
+- testes em diferentes níveis da pirâmide;
+- critérios objetivos de qualidade e cobertura;
+- rastreabilidade de defeitos conhecidos;
+- pipeline automatizado para evitar regressões.
+
+## Funcionalidades
+
+### Implementadas
+
+- Header responsivo com navegação por rota e âncoras.
+- Identificação automática da seção visível.
+- Menu móvel com bloqueio de rolagem do documento.
+- Preferência de tema persistida em `localStorage`.
+- Hero responsivo com arte personalizada e animação sequencial.
+- CTAs para projetos e apresentação profissional.
+- Indicadores de atuação e links sociais preparados para configuração.
+- Seção Sobre com especialidades e terminal animado.
+- Realce de sintaxe sem dependência externa.
+- Seção Skills orientada por configuração.
+- Efeitos visuais controlados por CSS e posição do ponteiro.
+- Página `/projetos` pré-renderizada com estrutura para cases.
+- Suporte a `prefers-reduced-motion`.
+
+### Em evolução
+
+- Projetos e URLs sociais ainda usam conteúdo demonstrativo.
+- Currículo ainda não está disponível para download.
+- Seções Experiências, Contato e Footer ainda não foram implementadas.
+- O tema claro precisa ser propagado de forma consistente para todas as superfícies.
 
 ## Arquitetura
 
-O projeto utiliza o **App Router**. A rota principal permanece como Server Component e componentes interativos são isolados em limites de cliente específicos.
+O App Router organiza as rotas e mantém componentes como Server Components sempre que não dependem de estado, efeitos ou APIs do navegador. Os limites `"use client"` ficam restritos às interações do Header, do terminal animado e da seção Skills.
 
-```text
-src/
-├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── projetos/
-│       ├── page.module.css
-│       └── page.tsx
-└── components/
-    ├── About/
-    │   ├── About.module.css
-    │   ├── About.tsx
-    │   └── CodeTerminal.tsx
-    ├── Header/
-    │   ├── Header.module.css
-    │   └── Header.tsx
-    ├── Hero/
-    │   ├── Hero.module.css
-    │   └── Hero.tsx
-    └── Skills/
-        ├── Skills.module.css
-        ├── SkillCard.tsx
-        ├── Skills.tsx
-        ├── SkillsScene.tsx
-        └── skills.config.ts
+```mermaid
+flowchart TD
+    Browser[Navegador] --> AppRouter[Next.js App Router]
+    AppRouter --> Home[Home — Server Component]
+    AppRouter --> Projects[Projetos — Server Component]
+    Home --> Header[Header — Client Component]
+    Home --> Hero[Hero — Server Component]
+    Home --> About[About — Server Component]
+    Home --> Skills[Skills — Client Component]
+    About --> Terminal[CodeTerminal — Client Component]
+    Skills --> Config[skills.config.ts]
+    Header --> BrowserAPIs[localStorage + IntersectionObserver]
 ```
 
-Recursos estáticos e imagens ficam em `public/assets`.
+### Estrutura do repositório
 
-### Decisões técnicas
+```text
+.
+├── .github/
+│   └── workflows/
+│       └── quality.yml
+├── docs/
+│   ├── auditoria-e-testes.md
+│   └── resultado-da-suite.md
+├── public/
+│   └── assets/
+├── src/
+│   ├── app/
+│   │   ├── projetos/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   └── components/
+│       ├── About/
+│       ├── Header/
+│       ├── Hero/
+│       └── Skills/
+├── tests/
+│   └── e2e/
+├── playwright.config.ts
+├── vitest.config.mts
+└── vitest.setup.ts
+```
 
-- **Navegação híbrida:** a Home usa âncoras para suas seções, enquanto Projetos possui uma rota dedicada.
-- **Server Components por padrão:** os limites de cliente ficam restritos aos componentes que usam APIs do navegador, como Header, terminal e Skills.
-- **CSS Modules:** evitam conflitos globais e mantêm os estilos próximos aos componentes.
-- **Animações sem bibliotecas:** os efeitos usam CSS e pequenos controles React, reduzindo dependências.
-- **Sequências determinísticas:** a chuva binária parece aleatória, mas gera o mesmo resultado a cada renderização.
-- **Skills orientada por configuração:** tecnologias, nomes, logos e classes visuais ficam centralizados em `skills.config.ts`.
-- **Interação sem estado React:** o halo da seção Skills acompanha o ponteiro por propriedades CSS, evitando renderizações desnecessárias.
-- **Progressive enhancement:** o conteúdo continua compreensível quando animações são reduzidas.
+## Decisões técnicas
 
-## Acessibilidade
+| Decisão | Motivação | Consequência |
+| --- | --- | --- |
+| App Router | Usar o modelo atual do Next.js e permitir renderização no servidor | Menor JavaScript enviado ao cliente |
+| Server Components por padrão | Evitar hidratação onde não existe interação | Melhor custo de carregamento e limites explícitos |
+| CSS Modules | Isolar estilos sem introduzir runtime adicional | Estilos previsíveis e próximos aos componentes |
+| Animações em CSS | Reduzir dependências e manter controle fino | Menor bundle e suporte direto a movimento reduzido |
+| Skills orientada por dados | Centralizar nome, ícone e classe de cada tecnologia | Inclusão de novas skills sem duplicar marcação |
+| Propriedades CSS para ponteiro | Evitar estado React em eventos de alta frequência | Menos renderizações durante a interação |
+| Vitest + Testing Library | Testar comportamento e semântica dos componentes | Feedback rápido e testes menos acoplados |
+| Playwright + axe-core | Validar fluxos e acessibilidade no navegador real | Cobertura de integração próxima do uso real |
+| Falhas esperadas rastreadas | Manter defeitos conhecidos visíveis sem tornar a suíte instável | Correções futuras já possuem especificação de regressão |
 
-- HTML semântico com regiões e hierarquia de títulos.
-- Navegação principal identificada por `aria-label`.
-- Estados de foco visíveis para navegação por teclado.
-- Elementos decorativos ocultos de tecnologias assistivas.
-- Nome animado acompanhado por um rótulo completo para leitores de tela.
-- Suporte a `prefers-reduced-motion`.
-- Bloqueio de rolagem enquanto o menu móvel está aberto.
+## Stack técnica
 
-## Como executar
+### Produto
+
+- Next.js 16.3.4
+- React 19.2.8
+- TypeScript 5
+- CSS Modules
+- `next/font`
+- `next/image`
+- React Icons
+
+### Qualidade
+
+- ESLint 9
+- Vitest 4
+- React Testing Library
+- Testing Library User Event
+- Playwright 1.62
+- axe-core para verificações WCAG automatizáveis
+- V8 Coverage
+- GitHub Actions
+
+O Tailwind CSS está instalado como parte da configuração inicial, mas a interface atual utiliza CSS Modules. A permanência dessa dependência deve ser reavaliada antes da versão estável.
+
+## Estratégia de testes
+
+A suíte prioriza comportamento observável e utiliza cada ferramenta no nível em que ela oferece mais valor.
+
+| Camada | Escopo | Exemplos |
+| --- | --- | --- |
+| Unidade e componente | Renderização, semântica e interações isoladas | Header, Hero, About, CodeTerminal e Skills |
+| Integração | Composição das páginas e contratos entre componentes | Home e Projetos |
+| E2E | Jornadas executadas no navegador | Navegação, rota de projetos e persistência do tema |
+| Acessibilidade | Regras WCAG automatizáveis | Home e Projetos com axe-core |
+| Qualidade estática | Tipos, padrões e problemas de código | TypeScript e ESLint |
+| Build | Compatibilidade com produção e pré-renderização | `/` e `/projetos` |
+
+### Resultado da execução de referência
+
+| Métrica | Resultado |
+| --- | ---: |
+| Arquivos de teste Vitest | 7 |
+| Testes de unidade/componente | 12 aprovados |
+| Cenários Playwright | 8 concluídos |
+| Cobertura de linhas | 84,29% |
+| Cobertura de statements | 82,01% |
+| Cobertura de funções | 88,46% |
+| Cobertura de branches | 78% |
+
+Quatro cenários E2E representam defeitos conhecidos e estão marcados com `test.fail()`. Eles são executados como falhas esperadas e devem ser convertidos em testes de regressão obrigatórios assim que os respectivos problemas forem corrigidos.
+
+Consulte os documentos completos:
+
+- [Auditoria técnica e estratégia de testes](docs/auditoria-e-testes.md)
+- [Resultado da suíte de qualidade](docs/resultado-da-suite.md)
+
+## Quality gates
+
+Uma alteração está pronta para integração quando atende aos seguintes critérios:
+
+1. ESLint sem erros.
+2. TypeScript sem erros.
+3. Testes de unidade e componentes aprovados.
+4. Cobertura mínima de 70% para linhas, statements e funções.
+5. Cobertura mínima de 60% para branches.
+6. Fluxos E2E e acessibilidade concluídos.
+7. Build de produção aprovado.
+8. Nenhuma vulnerabilidade conhecida de severidade relevante introduzida.
+
+O comando abaixo concentra essas verificações:
+
+```bash
+npm run check
+```
+
+## Execução local
 
 ### Pré-requisitos
 
 - Node.js 20 ou superior.
 - npm 10 ou superior.
+- Git.
 
 ### Instalação
 
 ```bash
-git clone <url-do-repositorio>
+git clone <URL_DO_REPOSITORIO>
 cd portfolio-descomplicadevdan
-npm install
+npm ci
 ```
 
 ### Desenvolvimento
@@ -119,77 +217,140 @@ npm install
 npm run dev
 ```
 
-A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
+A aplicação ficará disponível em [http://localhost:3000](http://localhost:3000).
 
-### Validação local
+### Preparação dos testes E2E
+
+Na primeira execução, instale o navegador controlado pelo Playwright:
 
 ```bash
-npm run lint
-npm run build
+npx playwright install chromium
 ```
 
-O build atual gera as rotas `/` e `/projetos` como conteúdo estático.
+Em Linux ou em um agente de CI, também podem ser necessárias as dependências do sistema:
 
-## Scripts
+```bash
+npx playwright install --with-deps chromium
+```
 
-| Comando | Descrição |
+## Scripts disponíveis
+
+| Comando | Responsabilidade |
 | --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento |
-| `npm run build` | Gera e valida o build de produção |
-| `npm run start` | Executa o build de produção localmente |
-| `npm run lint` | Analisa o código com ESLint |
+| `npm run dev` | Inicia o ambiente de desenvolvimento |
+| `npm run build` | Gera o build de produção |
+| `npm run start` | Executa o build de produção |
+| `npm run lint` | Executa a análise do ESLint |
+| `npm run typecheck` | Valida os tipos sem gerar arquivos |
+| `npm test` | Executa Vitest uma vez |
+| `npm run test:watch` | Executa Vitest em modo contínuo |
+| `npm run test:coverage` | Executa os testes e gera cobertura HTML/JSON |
+| `npm run test:e2e` | Executa Playwright no Chromium |
+| `npm run test:e2e:ui` | Abre a interface interativa do Playwright |
+| `npm run test:all` | Executa cobertura e testes E2E |
+| `npm run check` | Executa todos os quality gates locais |
 
-## Limitações atuais
+## Relatórios e evidências
 
-- Os links de GitHub, LinkedIn, WhatsApp e e-mail ainda são provisórios.
-- O currículo ainda não foi adicionado; o botão de download permanece desabilitado.
-- O texto da seção Sobre é uma primeira versão e precisa de revisão final.
-- Ainda não há suíte automatizada de testes.
-- Ainda não há ambiente público de demonstração.
-- A página Projetos ainda utiliza dados demonstrativos e não possui links para cases reais.
+Os artefatos são gerados localmente e não são versionados:
+
+| Artefato | Local |
+| --- | --- |
+| Cobertura HTML | `coverage/index.html` |
+| Relatório Playwright | `playwright-report/index.html` |
+| Resultado Playwright em JSON | `reports/playwright-results.json` |
+| Screenshots, vídeos e traces | `test-results/artifacts/` |
+
+No GitHub Actions, esses relatórios são publicados como artefatos por 14 dias, inclusive quando uma etapa falha.
+
+## Integração contínua
+
+O workflow `.github/workflows/quality.yml` é executado em pushes para `main` e em pull requests. O pipeline realiza:
+
+1. instalação determinística com `npm ci`;
+2. lint;
+3. verificação de tipos;
+4. testes com cobertura;
+5. build de produção;
+6. instalação do Chromium;
+7. testes E2E e acessibilidade;
+8. publicação dos relatórios.
+
+## Acessibilidade
+
+O projeto inclui:
+
+- estrutura semântica e hierarquia de títulos;
+- nomes acessíveis para controles e links;
+- foco visível para navegação por teclado;
+- conteúdo decorativo oculto de tecnologias assistivas;
+- nome completo disponível para leitores de tela durante a animação;
+- suporte a `prefers-reduced-motion`;
+- verificações automatizadas com axe-core.
+
+Testes automatizados identificam apenas parte das barreiras. Navegação por teclado, leitores de tela, contraste contextual e experiência com zoom devem continuar fazendo parte da validação manual.
+
+## Segurança e dependências
+
+O último `npm audit` terminou sem vulnerabilidades conhecidas. O Lighthouse CI chegou a ser avaliado, mas não foi mantido porque sua árvore de dependências introduziu 13 vulnerabilidades transitivas, incluindo 7 de severidade alta.
+
+Essa decisão mantém o projeto seguro enquanto métricas de desempenho podem ser executadas de forma isolada. A adoção do Lighthouse CI poderá ser reconsiderada quando a cadeia afetada for atualizada.
+
+## Limitações e dívida técnica conhecida
+
+| Prioridade | Item | Estado |
+| --- | --- | --- |
+| Alta | Corrigir o corte de “Descomplica” em 390 px | Rastreado por E2E |
+| Alta | Substituir links sociais provisórios | Rastreado por E2E |
+| Alta | Implementar ou remover links para Experiências e Contato | Rastreado por E2E |
+| Média | Corrigir o contrato ARIA do terminal | Rastreado por E2E |
+| Média | Completar o tema claro | Pendente |
+| Média | Melhorar foco e fechamento por `Escape` no menu móvel | Pendente |
+| Média | Tornar o build independente da rede do Google Fonts | Pendente |
+| Média | Substituir projetos demonstrativos por cases reais | Pendente |
+| Baixa | Remover assets órfãos e otimizar a imagem do Hero | Pendente |
 
 ## Roadmap
 
-- [x] Configurar a base em Next.js, React e TypeScript.
-- [x] Criar tokens globais e estrutura de estilos.
-- [x] Implementar Header responsivo.
-- [x] Implementar Hero e indicadores.
-- [x] Implementar a primeira versão da seção Sobre.
-- [x] Adicionar animações acessíveis e terminal com syntax highlighting.
-- [ ] Revisar o conteúdo definitivo da seção Sobre.
-- [ ] Adicionar links reais e currículo.
-- [x] Criar a estrutura inicial da página Projetos.
-- [ ] Substituir os cards demonstrativos pelos projetos reais.
-- [x] Criar a estrutura inicial da seção Skills.
-- [x] Definir as tecnologias e ferramentas exibidas na seção Skills.
-- [x] Adicionar fundo interativo e interações acessíveis aos logos.
-- [ ] Criar a seção Experiências.
-- [ ] Criar a seção Contato e o Footer.
-- [ ] Adicionar testes automatizados.
-- [ ] Adicionar metadados sociais, sitemap e robots.
-- [ ] Executar auditorias de acessibilidade e desempenho.
+- [x] Estruturar o projeto com Next.js, React e TypeScript.
+- [x] Implementar Header, Hero, Sobre, Skills e Projetos.
+- [x] Aplicar responsividade e suporte a movimento reduzido.
+- [x] Configurar testes de unidade, integração, E2E e acessibilidade.
+- [x] Definir limites mínimos de cobertura.
+- [x] Configurar pipeline de qualidade no GitHub Actions.
+- [x] Documentar auditoria, resultados e dívida técnica.
+- [ ] Corrigir os defeitos conhecidos protegidos por testes.
+- [ ] Adicionar links profissionais e currículo.
+- [ ] Publicar projetos e cases reais.
+- [ ] Criar as seções Experiências, Contato e Footer.
+- [ ] Adicionar Open Graph, sitemap e robots.
+- [ ] Executar auditoria manual completa de acessibilidade.
+- [ ] Estabelecer orçamento de performance.
 - [ ] Publicar a aplicação.
 
 ## Convenções
 
-Os commits seguem o padrão [Conventional Commits](https://www.conventionalcommits.org/):
+Commits seguem o padrão Conventional Commits:
 
 ```text
-feat: add new functionality
-fix: correct unexpected behavior
-style: refine visual presentation
-docs: update project documentation
-refactor: improve implementation without changing behavior
+feat: adiciona uma nova capacidade
+fix: corrige comportamento incorreto
+test: adiciona ou ajusta cobertura automatizada
+docs: atualiza documentação
+refactor: melhora a estrutura sem alterar comportamento
+chore: atualiza ferramentas ou manutenção interna
 ```
+
+Branches de trabalho devem ser curtas, focadas e integradas por pull request. Mudanças funcionais devem incluir testes ou uma justificativa registrada para a ausência deles.
+
+## Ambiente em OneDrive
+
+O repositório está em uma pasta sincronizada pelo OneDrive. Arquivos gerados em `.next`, `next-env.d.ts` ou metadados internos do Git podem ocasionalmente receber bloqueios e causar erros `EPERM`.
+
+Caso isso se torne recorrente, mantenha o clone de desenvolvimento em uma pasta local fora do OneDrive e utilize o repositório remoto como mecanismo de sincronização.
 
 ## Autoria
 
 Desenvolvido por **Descomplica Dev Dan**.
 
-Os links profissionais serão adicionados quando os canais definitivos forem configurados.
-
-## Observação sobre o OneDrive
-
-O repositório está atualmente em uma pasta sincronizada pelo OneDrive. Em alguns momentos, arquivos gerados em `.next`, `next-env.d.ts` ou arquivos internos de `.git` podem receber o atributo de somente leitura e causar erros `EPERM`.
-
-Se isso ocorrer com frequência, mova o repositório para uma pasta local fora do OneDrive e mantenha apenas o remoto Git como mecanismo de sincronização do código.
+Os canais profissionais serão publicados quando as URLs definitivas forem configuradas.
