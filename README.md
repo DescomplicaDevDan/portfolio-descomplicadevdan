@@ -23,7 +23,9 @@ O projeto foi iniciado para reunir experiências e trabalhos em uma aplicação 
 - Background Matrix com sequências binárias pseudoaleatórias.
 - Terminal animado com múltiplos códigos e realce de sintaxe.
 - Página dedicada de projetos com cards responsivos e conteúdo demonstrativo.
-- Seção Skills com tecnologias, níveis demonstrativos e painel de princípios.
+- Seção Skills com dez tecnologias e ferramentas apresentadas por seus logos oficiais.
+- Fundo digital interativo que reage ao cursor, com partículas, scanline e iluminação ambiente.
+- Interações de destaque nos logos com suporte à preferência de movimento reduzido.
 
 ## Tecnologias
 
@@ -36,6 +38,7 @@ O projeto foi iniciado para reunir experiências e trabalhos em uma aplicação 
 | CSS puro | Layout, responsividade e animações |
 | `next/font` | Carregamento otimizado das fontes Geist |
 | `next/image` | Otimização dos recursos visuais |
+| React Icons | Logos vetoriais das tecnologias e ícones da interface |
 | ESLint | Qualidade e análise estática |
 
 O Tailwind CSS permanece instalado, mas não é utilizado na interface atual. A escolha por CSS Modules mantém os estilos explícitos, isolados e sem dependência de classes utilitárias.
@@ -66,18 +69,23 @@ src/
     │   └── Hero.tsx
     └── Skills/
         ├── Skills.module.css
-        └── Skills.tsx
+        ├── SkillCard.tsx
+        ├── Skills.tsx
+        ├── SkillsScene.tsx
+        └── skills.config.ts
 ```
 
 Recursos estáticos e imagens ficam em `public/assets`.
 
 ### Decisões técnicas
 
-- **Página única por seções:** a navegação principal usa âncoras para manter a experiência contínua.
-- **Server Components por padrão:** apenas Header e terminal usam APIs do navegador e estado no cliente.
+- **Navegação híbrida:** a Home usa âncoras para suas seções, enquanto Projetos possui uma rota dedicada.
+- **Server Components por padrão:** os limites de cliente ficam restritos aos componentes que usam APIs do navegador, como Header, terminal e Skills.
 - **CSS Modules:** evitam conflitos globais e mantêm os estilos próximos aos componentes.
 - **Animações sem bibliotecas:** os efeitos usam CSS e pequenos controles React, reduzindo dependências.
 - **Sequências determinísticas:** a chuva binária parece aleatória, mas gera o mesmo resultado a cada renderização.
+- **Skills orientada por configuração:** tecnologias, nomes, logos e classes visuais ficam centralizados em `skills.config.ts`.
+- **Interação sem estado React:** o halo da seção Skills acompanha o ponteiro por propriedades CSS, evitando renderizações desnecessárias.
 - **Progressive enhancement:** o conteúdo continua compreensível quando animações são reduzidas.
 
 ## Acessibilidade
@@ -120,7 +128,7 @@ npm run lint
 npm run build
 ```
 
-O build atual gera a rota `/` como conteúdo estático.
+O build atual gera as rotas `/` e `/projetos` como conteúdo estático.
 
 ## Scripts
 
@@ -153,7 +161,8 @@ O build atual gera a rota `/` como conteúdo estático.
 - [x] Criar a estrutura inicial da página Projetos.
 - [ ] Substituir os cards demonstrativos pelos projetos reais.
 - [x] Criar a estrutura inicial da seção Skills.
-- [ ] Revisar os níveis e tecnologias da seção Skills.
+- [x] Definir as tecnologias e ferramentas exibidas na seção Skills.
+- [x] Adicionar fundo interativo e interações acessíveis aos logos.
 - [ ] Criar a seção Experiências.
 - [ ] Criar a seção Contato e o Footer.
 - [ ] Adicionar testes automatizados.
