@@ -82,6 +82,8 @@ npm run test:e2e:ui
 npm run test:all
 ```
 
+O comando `typecheck` executa `next typegen` antes do TypeScript. Essa ordem é necessária em ambientes limpos de CI porque helpers globais como `LayoutProps` são gerados pelo Next.js e não existem antes de `next dev`, `next build` ou `next typegen`.
+
 ## Política de resultados
 
 - Testes novos devem descrever comportamento do usuário, não detalhes internos de implementação.

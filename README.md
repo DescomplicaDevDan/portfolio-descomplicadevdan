@@ -241,7 +241,7 @@ npx playwright install --with-deps chromium
 | `npm run build` | Gera o build de produção |
 | `npm run start` | Executa o build de produção |
 | `npm run lint` | Executa a análise do ESLint |
-| `npm run typecheck` | Valida os tipos sem gerar arquivos |
+| `npm run typecheck` | Gera os tipos de rotas do Next.js e valida o TypeScript sem emitir JavaScript |
 | `npm test` | Executa Vitest uma vez |
 | `npm run test:watch` | Executa Vitest em modo contínuo |
 | `npm run test:coverage` | Executa os testes e gera cobertura HTML/JSON |

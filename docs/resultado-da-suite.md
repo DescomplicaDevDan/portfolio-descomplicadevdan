@@ -12,6 +12,8 @@ Data: 2 de setembro de 2026.
 - Segurança de dependências: 0 vulnerabilidades conhecidas no `npm audit`.
 - Build de produção: aprovado com Webpack; gera `/` e `/projetos` como rotas estáticas.
 
+O fluxo de CI gera os tipos de rota com `next typegen` antes de executar `tsc --noEmit`, garantindo que helpers globais como `LayoutProps` existam também em runners recém-criados.
+
 ## Defeitos conhecidos rastreados
 
 1. Os links para `#experiencias` e `#contato` não encontram elementos correspondentes.
