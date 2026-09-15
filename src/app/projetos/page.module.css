@@ -44,3 +44,10 @@
 @media (max-width: 850px) { .featured { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } .featured { grid-column: auto; } .featured .preview { min-height: 300px; } }
 @media (max-width: 560px) { .projects { padding: 72px 0; } .container { width: min(calc(100% - 36px), 1200px); } .heading { margin-bottom: 40px; } .preview { min-height: 230px; padding: 14px; } .featured .preview { min-height: 250px; } .previewContent { padding: 16px; } .cardContent { padding: 25px 22px; } }
 @media (prefers-reduced-motion: reduce) { .scanline { display: none; } .card, .footer b { transition: none; } }
+
+.footer { flex-wrap: wrap; gap: 18px; }
+.footer > span { color: #a9b5ae; }
+.projectLinks { display: flex; flex-wrap: wrap; gap: 12px; }
+.projectLinks a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid rgb(66 232 98 / 35%); border-radius: 8px; color: var(--color-accent); font-size: .85rem; text-decoration: none; }
+.projectLinks a:hover { background: rgb(66 232 98 / 10%); }
+.projectLinks a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }

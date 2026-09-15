@@ -1,5 +1,7 @@
+import { NutricompPreview } from "@/components/Projects/NutricompPreview";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header/Header";
+import { projects } from "@/config/projects";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -7,37 +9,10 @@ export const metadata: Metadata = {
   description: "Projetos e soluções desenvolvidos por Descomplica Dev Dan.",
 };
 
-const projects = [
-  {
-    number: "01",
-    title: "Central de Serviços",
-    category: "Full Stack",
-    description: "Plataforma para organizar solicitações, acompanhar atendimentos e transformar dados operacionais em decisões mais rápidas.",
-    technologies: ["Next.js", "TypeScript", "API REST", "PostgreSQL"],
-    featured: true,
-  },
-  {
-    number: "02",
-    title: "Dashboard Analítico",
-    category: "Front-end",
-    description: "Painel responsivo para visualizar indicadores, tendências e resultados de negócio com clareza.",
-    technologies: ["React", "TypeScript", "CSS Modules"],
-    featured: false,
-  },
-  {
-    number: "03",
-    title: "Automação Inteligente",
-    category: "Back-end",
-    description: "Fluxo automatizado para reduzir tarefas repetitivas, integrar serviços e aumentar a produtividade.",
-    technologies: ["Node.js", "APIs", "Webhooks"],
-    featured: false,
-  },
-];
-
 function ProjectPreview() {
   return (
     <div className={styles.preview} aria-hidden="true">
-      <div className={styles.previewTop}><span /><span /><span /><p>project.dev</p></div>
+      <div className={styles.previewTop}><span /><span /><span /><p>ilustração do projeto</p></div>
       <div className={styles.previewBody}>
         <aside><span /><span /><span /><span /></aside>
         <div className={styles.previewContent}>
@@ -60,13 +35,13 @@ export default function ProjectsPage() {
           <header className={styles.heading}>
             <p className={styles.eyebrow}>02. projetos</p>
             <h1>Ideias que viram soluções<span>.</span></h1>
-            <p className={styles.intro}>Esta é uma prévia visual. Os conteúdos demonstrativos serão substituídos pelos projetos e cases reais.</p>
+            <p className={styles.intro}>Conheça meus projetos, explore o código e acompanhe o desenvolvimento de soluções para a web.</p>
           </header>
 
           <div className={styles.grid}>
             {projects.map((project) => (
               <article className={`${styles.card} ${project.featured ? styles.featured : ""}`} key={project.number}>
-                <ProjectPreview />
+                {project.featured ? <NutricompPreview /> : <ProjectPreview />}
                 <div className={styles.cardContent}>
                   <div className={styles.meta}><span>{project.number}</span><p>{project.category}</p></div>
                   <h2>{project.title}</h2>
@@ -74,7 +49,13 @@ export default function ProjectsPage() {
                   <ul className={styles.tags} aria-label="Tecnologias utilizadas">
                     {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
                   </ul>
-                  <div className={styles.footer}><span><i /> Conteúdo demonstrativo</span><b aria-hidden="true">↗</b></div>
+                  <div className={styles.footer}>
+                    <span><i /> {project.status}</span>
+                    <div className={styles.projectLinks}>
+                      <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${project.title} no GitHub (abre em nova aba)`}>Ver código <b aria-hidden="true">↗</b></a>
+                      {project.siteUrl && <a href={project.siteUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visitar site de ${project.title} (abre em nova aba)`}>Visitar site <b aria-hidden="true">↗</b></a>}
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}
