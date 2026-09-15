@@ -23,6 +23,10 @@ describe("Header", () => {
 
     await user.click(button);
     expect(screen.getByRole("button", { name: /fechar menu/i })).toHaveAttribute("aria-expanded", "true");
+
+    await user.keyboard("{Escape}");
+    expect(screen.getByRole("button", { name: /abrir menu/i })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: /abrir menu/i })).toHaveFocus();
   });
 
   it("não exibe destinos ainda indisponíveis", () => {

@@ -49,4 +49,21 @@ describe("Contact", () => {
     expect(decodeURIComponent(href)).toContain("ana@empresa.com");
     expect(decodeURIComponent(href)).toContain("(22) 99999-0000");
   });
+
+  it("remove espaços externos e mantém caracteres especiais seguros na URL", () => {
+    const formData = new FormData();
+    formData.set("name", "  João da Silva  ");
+    formData.set("email", " joao+contato@empresa.com ");
+    formData.set("whatsapp", " (22) 98888-7777 ");
+    formData.set("subject", " Site & sistema ");
+    formData.set("message", " Preciso avaliar preço, prazo e integração. ");
+
+    const href = buildWhatsappHref(formData);
+    const decodedHref = decodeURIComponent(href);
+
+    expect(href).not.toContain(" ");
+    expect(decodedHref).toContain("*Nome:* João da Silva");
+    expect(decodedHref).toContain("*Assunto:* Site & sistema");
+    expect(decodedHref).not.toContain("  João da Silva  ");
+  });
 });

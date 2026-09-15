@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
 import styles from "./Header.module.css";
 
@@ -16,6 +16,7 @@ const links = [
 export function Header() {
   const [activeSection, setActiveSection] = useState("inicio");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const sections = links
@@ -36,8 +37,18 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    function closeMenuWithEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      menuButtonRef.current?.focus();
+    }
+
+    if (isMenuOpen) document.addEventListener("keydown", closeMenuWithEscape);
+
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", closeMenuWithEscape);
     };
   }, [isMenuOpen]);
 
@@ -62,7 +73,7 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <button className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ""}`} type="button" aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen} aria-controls="primary-navigation" onClick={() => setIsMenuOpen((open) => !open)}>
+          <button ref={menuButtonRef} className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ""}`} type="button" aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen} aria-controls="primary-navigation" onClick={() => setIsMenuOpen((open) => !open)}>
             <span /><span /><span />
           </button>
         </div>

@@ -69,7 +69,20 @@ O comando abaixo executa todas as verificações:
 npm run check
 ```
 
-Os testes cobrem componentes, integração das páginas, navegação, responsividade e verificações automatizadas de acessibilidade. Os limites mínimos configurados são 70% para linhas, funções e statements, e 60% para branches.
+### O que é testado
+
+- **Componentes e integração:** conteúdo principal, navegação, menu, projetos, canais de contato, geração da mensagem do WhatsApp, cópia para a área de transferência, movimento reduzido e interação da seção de skills.
+- **Fluxos E2E:** navegação da Home para Projetos, menu móvel operado por teclado, bloqueio e restauração da rolagem, validação do formulário e redirecionamento para o WhatsApp.
+- **Responsividade:** o título principal é medido em viewport de 390 px para evitar corte em celulares.
+- **Acessibilidade:** semântica dos controles e análise automática com `axe-core` nas rotas `/` e `/projetos`, bloqueando violações `serious` e `critical` das regras WCAG configuradas.
+- **SEO técnico:** título, descrição, canonical, Open Graph, Twitter Card, `robots.txt` e `sitemap.xml`.
+- **Links de projetos:** destinos publicados, abertura em nova aba e atributos de segurança.
+
+Os testes unitários e de integração usam Vitest, Testing Library e `jsdom`. Os testes no navegador usam Playwright com Chromium. Os limites mínimos de cobertura são 70% para linhas, funções e statements, e 60% para branches.
+
+O build de produção usa o compilador Webpack suportado pelo Next.js para manter a execução consistente no Windows e no CI.
+
+Testes automáticos de acessibilidade não substituem uma revisão manual com teclado, ampliação e leitor de tela.
 
 ## Estrutura principal
 
