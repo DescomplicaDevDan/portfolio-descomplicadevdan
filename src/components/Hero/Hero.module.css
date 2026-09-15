@@ -442,6 +442,7 @@
 }
 
 @media (max-width: 560px) {
+  .firstNameLine { width: auto; animation: none; }
   .buttons {
     flex-direction: column;
   }
@@ -453,7 +454,7 @@
 
   .hero { padding-bottom: 18px; }
   .content { padding-top: 48px; }
-  .content h1 { font-size: clamp(3rem, 17vw, 4.5rem); }
+  .content h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
   .content h1 > span:first-child { font-size: clamp(1.8rem, 9vw, 2.5rem); }
   .description { margin-top: 28px; }
   .highlights { grid-template-columns: 1fr; padding: 12px 20px; }

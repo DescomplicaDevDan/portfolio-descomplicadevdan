@@ -34,6 +34,7 @@ describe("CodeTerminal", () => {
     act(() => vi.runOnlyPendingTimers());
 
     expect(screen.getByLabelText(/código sendo digitado/i)).toHaveTextContent("const developer");
+    expect(screen.getByRole("region", { name: /código sendo digitado/i })).toBeInTheDocument();
     expect(screen.getByText('"Dev Dan"')).toBeInTheDocument();
   });
 

@@ -1,13 +1,10 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { Header } from "./Header";
 
 describe("Header", () => {
-  beforeEach(() => {
-    window.localStorage.clear();
-    delete document.documentElement.dataset.theme;
-  });
+  beforeEach(() => window.localStorage.clear());
 
   it("expõe a navegação principal com nomes acessíveis", () => {
     render(<Header />);
@@ -28,14 +25,9 @@ describe("Header", () => {
     expect(screen.getByRole("button", { name: /fechar menu/i })).toHaveAttribute("aria-expanded", "true");
   });
 
-  it("persiste a preferência de tema", async () => {
-    const user = userEvent.setup();
+  it("não exibe destinos ainda indisponíveis", () => {
     render(<Header />);
-
-    await waitFor(() => expect(document.documentElement.dataset.theme).toBe("dark"));
-    await user.click(screen.getByRole("button", { name: /ativar tema claro/i }));
-
-    expect(document.documentElement.dataset.theme).toBe("light");
-    expect(window.localStorage.getItem("portfolio-theme")).toBe("light");
+    expect(screen.queryByRole("link", { name: "Experiências" })).not.toBeInTheDocument();
+    expect(screen.queryByText(/download cv/i)).not.toBeInTheDocument();
   });
 });

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
@@ -11,24 +10,12 @@ const links = [
   { label: "Sobre", href: "/#sobre", id: "sobre" },
   { label: "Projetos", href: "/projetos", id: "projetos" },
   { label: "Skills", href: "/#skills", id: "skills" },
-  { label: "Experiências", href: "/#experiencias", id: "experiencias" },
   { label: "Contato", href: "/#contato", id: "contato" },
 ];
-
-type Theme = "dark" | "light";
 
 export function Header() {
   const [activeSection, setActiveSection] = useState("inicio");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  useEffect(() => {
-    const storedTheme = window.localStorage.getItem("portfolio-theme") as Theme | null;
-    const initialTheme = storedTheme ?? "dark";
-    document.documentElement.dataset.theme = initialTheme;
-    const syncTheme = window.setTimeout(() => setTheme(initialTheme), 0);
-    return () => window.clearTimeout(syncTheme);
-  }, []);
 
   useEffect(() => {
     const sections = links
@@ -54,13 +41,6 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
-  function toggleTheme() {
-    const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem("portfolio-theme", nextTheme);
-    setTheme(nextTheme);
-  }
-
   function handleNavigation(sectionId: string) {
     setActiveSection(sectionId);
     setIsMenuOpen(false);
@@ -82,12 +62,6 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.download} type="button" disabled title="Currículo em preparação">
-            Download CV<Image src="/assets/download.svg" alt="" width={18} height={18} />
-          </button>
-          <button className={styles.themeButton} type="button" aria-label={theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"} aria-pressed={theme === "light"} onClick={toggleTheme}>
-            <Image src={theme === "dark" ? "/assets/moon-fill.svg" : "/assets/brightness-high-fill.svg"} alt="" width={20} height={20} />
-          </button>
           <button className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ""}`} type="button" aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen} aria-controls="primary-navigation" onClick={() => setIsMenuOpen((open) => !open)}>
             <span /><span /><span />
           </button>

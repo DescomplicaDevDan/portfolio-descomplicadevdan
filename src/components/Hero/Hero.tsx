@@ -29,8 +29,8 @@ function SocialIcon({ type }: { type: string }) {
 const highlights = [
   {
     icon: "/assets/code-slash.svg",
-    value: "10+",
-    label: "Projetos concluídos",
+    value: "3",
+    label: "Projetos apresentados",
   },
   {
     icon: "/assets/rocket-takeoff.svg",

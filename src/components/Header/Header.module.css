@@ -26,11 +26,8 @@
 .navigation a:hover, .navigation a:focus-visible, .navigation .active { color: var(--color-text); }
 .navigation .active::after { content: ""; position: absolute; bottom: 14px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
 .actions { display: flex; align-items: center; gap: 18px; }
-.download { min-height: 52px; padding: 0 28px; border: 1px solid var(--color-accent-strong); border-radius: 999px; display: flex; align-items: center; gap: 14px; background: transparent; color: var(--color-text); text-transform: uppercase; font-size: 0.88rem; }
-.download:disabled { cursor: not-allowed; opacity: 0.78; }
-.download img, .themeButton img { filter: brightness(0) saturate(100%) invert(78%) sepia(80%) saturate(804%) hue-rotate(71deg) brightness(99%) contrast(88%); }
-.themeButton, .menuButton { width: 52px; height: 52px; border: 1px solid var(--color-border); border-radius: 50%; display: grid; place-items: center; background: var(--color-surface); color: var(--color-text); cursor: pointer; }
-.themeButton:focus-visible, .menuButton:focus-visible, .download:focus-visible, .navigation a:focus-visible, .brand:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.menuButton { width: 52px; height: 52px; border: 1px solid var(--color-border); border-radius: 50%; place-items: center; background: var(--color-surface); color: var(--color-text); cursor: pointer; }
+.menuButton:focus-visible, .navigation a:focus-visible, .brand:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 .menuButton { display: none; }
 .menuButton span { width: 21px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
 
@@ -57,10 +54,7 @@
 @media (max-width: 700px) {
   .content { width: min(calc(100% - 28px), var(--content-width)); }
   .brandLogo { width: 210px; }
-  .download { display: none; }
-  .themeButton, .menuButton { width: 44px; height: 44px; }
+  .menuButton { width: 44px; height: 44px; }
 }
-
-@media (max-width: 410px) { .themeButton { display: none; } }
 
 @media (max-width: 360px) { .brandLogo { width: 184px; } }

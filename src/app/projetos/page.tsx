@@ -5,8 +5,14 @@ import { projects } from "@/config/projects";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Projetos | Descomplica Dev Dan",
+  title: "Projetos",
   description: "Projetos e soluções desenvolvidos por Descomplica Dev Dan.",
+  alternates: { canonical: "/projetos" },
+  openGraph: {
+    title: "Projetos | Descomplica Dev Dan",
+    description: "Projetos e soluções desenvolvidos por Descomplica Dev Dan.",
+    url: "/projetos",
+  },
 };
 
 export default function ProjectsPage() {

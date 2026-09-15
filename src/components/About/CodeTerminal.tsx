@@ -110,7 +110,7 @@ export function CodeTerminal() {
   }, []);
 
   return (
-    <pre className={styles.animatedCode} aria-label="Código sendo digitado">
+    <pre className={styles.animatedCode} role="region" aria-label="Código sendo digitado">
       <code>{highlightCode(displayedCode)}<span className={styles.codeCursor} aria-hidden="true">|</span></code>
     </pre>
   );

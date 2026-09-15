@@ -65,9 +65,9 @@ export function Footer() {
             <h3>Contato direto</h3>
             <p>{contact.email}</p>
             <p>{contact.phone.display}</p>
-            <a href="/#inicio" className={styles.backToTop}>
+            <Link href="/#inicio" className={styles.backToTop}>
               Voltar ao topo <span aria-hidden="true">↑</span>
-            </a>
+            </Link>
           </div>
         </div>
 
