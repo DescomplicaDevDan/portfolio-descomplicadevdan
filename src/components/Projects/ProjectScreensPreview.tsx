@@ -1,60 +1,44 @@
-"use client";
-
 import Image from "next/image";
-import { useRef, useState } from "react";
 import styles from "./NutricompPreview.module.css";
 
 const nutricompScreens = [
   { file: "desktop", title: "Explore o cardápio", width: 1917, height: 865 },
   { file: "mobile", title: "Cardápio no celular", width: 335, height: 755 },
-  { file: "combo-desktop", title: "Monte seu combo", width: 1917, height: 863 },
-  { file: "combo-mobile", title: "Personalize pelo celular", width: 333, height: 753 },
-  { file: "pedido-desktop", title: "Revise seu pedido", width: 1877, height: 862 },
-  { file: "checkout-mobile", title: "Finalize pelo celular", width: 335, height: 752 },
 ];
 const motorScreens = [
   { file: "resultados", title: "Resultados por relevância", width: 1912, height: 908 },
-  { file: "inicio", title: "Busca de documentos", width: 1915, height: 906 },
   { file: "mobile", title: "Pesquisa no celular", width: 353, height: 798 },
 ];
 
-export function ProjectScreensPreview({ project = "nutricomp" }: { project?: "nutricomp" | "motor-busca" }) {
+const selfScreens = [
+  { file: "inicio-sem-retrato", title: "Apresentação da Self em Ação", width: 1864, height: 844 },
+];
+
+export function ProjectScreensPreview({ project = "nutricomp" }: { project?: "nutricomp" | "motor-busca" | "self-em-acao" }) {
+  const isSelf = project === "self-em-acao";
   const isMotor = project === "motor-busca";
-  const screens = isMotor ? motorScreens : nutricompScreens;
-  const name = isMotor ? "Motor de Busca" : "Nutricomp";
+  const screens = isSelf ? selfScreens : isMotor ? motorScreens : nutricompScreens;
+  const name = isSelf ? "Self em Ação" : isMotor ? "Motor de Busca" : "Nutricomp";
   const desktop = screens[0];
-  const mobile = screens.find((item) => item.file === "mobile")!;
+  const mobile = screens.find((item) => item.file === "mobile");
   const source = (file: string) => `/assets/projects/${project}/${file}.png`;
-  const titleId = `${project}-gallery-title`;
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [selected, setSelected] = useState(0);
-  const screen = screens[selected];
-
-  function openGallery() {
-    setSelected(0);
-    dialog.current?.showModal();
-  }
-
   return (
     <div className={styles.preview}>
-      <div className={styles.label}><span /> EXPERIÊNCIA RESPONSIVA</div>
-      <div className={styles.composition}>
+      <div className={styles.label}><span /> {isSelf ? "EM DESENVOLVIMENTO" : "EXPERIÊNCIA RESPONSIVA"}</div>
+      <div className={`${styles.composition} ${isSelf ? styles.desktopOnly : ""}`}>
         <div className={styles.browser}>
-          <div className={styles.toolbar}><span>● ● ●</span><span>{isMotor ? "Motor de Busca · Python / Flask" : "nutricomp.com.br"}</span></div>
+          <div className={styles.toolbar}><span>● ● ●</span><span>{isSelf ? "Self em Ação · Prévia" : isMotor ? "Motor de Busca · Python / Flask" : "nutricomp.com.br"}</span></div>
           <Image src={source(desktop.file)} width={desktop.width} height={desktop.height} alt={`${name}: ${desktop.title}`} sizes="(max-width: 850px) 85vw, 550px" />
         </div>
-        <div className={styles.phone}>
-          <Image src={source("mobile")} width={mobile.width} height={mobile.height} alt={`${name} no celular`} sizes="(max-width: 560px) 100px, 145px" />
-        </div>
+        {mobile && <div className={styles.phone}>
+          <div className={styles.phoneTop} aria-hidden="true"><span /><i /></div>
+          <div className={styles.phoneScreen}>
+          <Image src={source("mobile")} width={mobile.width} height={mobile.height} alt={`${name} no celular`} sizes="(max-width: 560px) 110px, 155px" />
+          </div>
+          <div className={styles.phoneBottom} aria-hidden="true"><span /></div>
+        </div>}
       </div>
-      <div className={styles.caption}><p>{isMotor ? "Da pesquisa ao resultado." : "Do cardápio ao pedido."}<br /><span>Uma experiência em qualquer tela.</span></p><button type="button" onClick={openGallery}>Ver telas <span aria-hidden="true">↗</span></button></div>
-      <dialog ref={dialog} className={styles.dialog} aria-labelledby={titleId} onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
-        <div className={styles.dialogContent}>
-          <header className={styles.dialogHeader}><div><p>{name} · {selected + 1} / {screens.length}</p><h2 id={titleId}>{screen.title}</h2></div><button type="button" onClick={() => dialog.current?.close()} autoFocus>Fechar <span aria-hidden="true">×</span></button></header>
-          <div className={styles.stage}><Image src={source(screen.file)} width={screen.width} height={screen.height} alt={screen.title} sizes="90vw" /><a href={source(screen.file)} target="_blank" rel="noopener noreferrer">Abrir imagem original ↗</a></div>
-          <nav className={styles.tabs} aria-label={`Telas de ${name}`}>{screens.map((item, index) => <button type="button" key={item.file} aria-pressed={index === selected} onClick={() => setSelected(index)}>{item.title}</button>)}</nav>
-        </div>
-      </dialog>
+      <div className={styles.caption}><p>{isSelf ? "Uma presença digital com identidade." : isMotor ? "Da pesquisa ao resultado." : "Do cardápio ao pedido."}<br /><span>{isSelf ? "Em desenvolvimento · retrato substituído." : "Uma experiência em qualquer tela."}</span></p></div>
     </div>
   );
 }

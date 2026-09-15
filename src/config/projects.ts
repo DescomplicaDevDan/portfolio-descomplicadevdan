@@ -29,7 +29,7 @@ export const projects = [
     technologies: ["Python", "Flask", "TF-IDF", "Trie"],
     status: "Projeto didático",
     repositoryUrl: "https://github.com/DescomplicaDevDan/Motor_busca",
-    siteUrl: null,
+    siteUrl: "https://motor-busca.vercel.app/",
     featured: false,
   },
 ] as const;

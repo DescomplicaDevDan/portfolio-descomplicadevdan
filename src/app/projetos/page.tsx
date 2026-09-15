@@ -9,22 +9,6 @@ export const metadata: Metadata = {
   description: "Projetos e soluções desenvolvidos por Descomplica Dev Dan.",
 };
 
-function ProjectPreview() {
-  return (
-    <div className={styles.preview} aria-hidden="true">
-      <div className={styles.previewTop}><span /><span /><span /><p>ilustração do projeto</p></div>
-      <div className={styles.previewBody}>
-        <aside><span /><span /><span /><span /></aside>
-        <div className={styles.previewContent}>
-          <div className={styles.previewHeading} />
-          <div className={styles.previewGrid}><span /><span /><span /></div>
-          <div className={styles.previewChart}><i /><i /><i /><i /><i /><i /></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function ProjectsPage() {
   return (
     <>
@@ -41,7 +25,7 @@ export default function ProjectsPage() {
           <div className={styles.grid}>
             {projects.map((project) => (
               <article className={`${styles.card} ${project.featured ? styles.featured : ""}`} key={project.number}>
-                {project.featured ? <ProjectScreensPreview /> : project.title === "Motor de Busca" ? <ProjectScreensPreview project="motor-busca" /> : <ProjectPreview />}
+                {project.featured ? <ProjectScreensPreview /> : project.title === "Motor de Busca" ? <ProjectScreensPreview project="motor-busca" /> : <ProjectScreensPreview project="self-em-acao" />}
                 <div className={styles.cardContent}>
                   <div className={styles.meta}><span>{project.number}</span><p>{project.category}</p></div>
                   <h2>{project.title}</h2>
