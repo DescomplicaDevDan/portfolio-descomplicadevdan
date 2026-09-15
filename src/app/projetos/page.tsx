@@ -1,4 +1,4 @@
-import { NutricompPreview } from "@/components/Projects/NutricompPreview";
+import { ProjectScreensPreview } from "@/components/Projects/ProjectScreensPreview";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header/Header";
 import { projects } from "@/config/projects";
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
           <div className={styles.grid}>
             {projects.map((project) => (
               <article className={`${styles.card} ${project.featured ? styles.featured : ""}`} key={project.number}>
-                {project.featured ? <NutricompPreview /> : <ProjectPreview />}
+                {project.featured ? <ProjectScreensPreview /> : project.title === "Motor de Busca" ? <ProjectScreensPreview project="motor-busca" /> : <ProjectPreview />}
                 <div className={styles.cardContent}>
                   <div className={styles.meta}><span>{project.number}</span><p>{project.category}</p></div>
                   <h2>{project.title}</h2>
