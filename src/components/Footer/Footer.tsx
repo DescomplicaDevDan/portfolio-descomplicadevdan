@@ -1,82 +1,17 @@
 import Link from "next/link";
-import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
-import { CopyButton } from "@/components/CopyButton/CopyButton";
 import { contact } from "@/config/contact";
 import styles from "./Footer.module.css";
-
-const navigation = [
-  { label: "Início", href: "/#inicio" },
-  { label: "Sobre", href: "/#sobre" },
-  { label: "Projetos", href: "/projetos" },
-  { label: "Serviços", href: "/#servicos" },
-  { label: "Contato", href: "/#contato" },
-];
-
-const professionalLinks = [
-  { label: "GitHub", href: contact.githubUrl },
-  { label: "LinkedIn", href: contact.linkedinUrl },
-  { label: "WhatsApp", href: contact.phone.whatsappUrl },
-];
 
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.ambient} aria-hidden="true" />
-      <div className={styles.container}>
-        <div className={styles.cta}>
-          <div>
-            <p className={styles.availability}><i /> Disponível para projetos e oportunidades</p>
-            <h2>Vamos construir algo que <span>faça sentido?</span></h2>
-          </div>
-        </div>
-
-        <div className={styles.content}>
-          <div className={styles.brandColumn}>
-            <Link href="/#inicio" aria-label="Voltar ao início">
-              <BrandLogo className={styles.logo} />
-            </Link>
-            <p>Sites e sistemas web para apresentar seus serviços e simplificar sua rotina.</p>
-          </div>
-
-          <nav className={styles.column} aria-label="Navegação do rodapé">
-            <h3>Navegação</h3>
-            {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
-          </nav>
-
-          <div className={styles.column}>
-            <h3>Conecte-se</h3>
-            {professionalLinks.map((item) => (
-              <a href={item.href} key={item.label} target="_blank" rel="noreferrer">
-                {item.label}<span aria-hidden="true">↗</span>
-              </a>
-            ))}
-            <CopyButton
-              value={contact.email}
-              label="Copiar e-mail profissional"
-              successLabel="E-mail copiado"
-              className={styles.copyEmail}
-            >
-              <span>Copiar e-mail</span>
-            </CopyButton>
-          </div>
-
-          <div className={styles.contactColumn}>
-            <h3>Contato direto</h3>
-            <p>{contact.email}</p>
-            <p>{contact.phone.display}</p>
-            <Link href="/#inicio" className={styles.backToTop}>
-              Voltar ao topo <span aria-hidden="true">↑</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className={styles.bottomBar}>
-          <p>© {new Date().getFullYear()} Descomplica Dev Dan</p>
-          <p>Sites e sistemas feitos por Danilo.</p>
-          <a href={contact.githubUrl + "/portfolio-descomplicadevdan"} target="_blank" rel="noreferrer">
-            Código do portfólio <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+      <div className={styles.content}>
+        <p><strong>Danilo</strong><span>•</span> Descomplica Dev Dan</p>
+        <nav aria-label="Redes profissionais">
+          <a href={contact.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={contact.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>
+          <Link href="/#inicio">Voltar ao início <span aria-hidden="true">↑</span></Link>
+        </nav>
       </div>
     </footer>
   );

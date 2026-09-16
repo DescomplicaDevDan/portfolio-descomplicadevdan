@@ -10,7 +10,8 @@ describe("Header", () => {
     render(<Header />);
 
     expect(screen.getByRole("navigation", { name: /navegação principal/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Início" })).toHaveAttribute("href", "/#inicio");
+    expect(screen.getByRole("link", { name: "Ir para o início" })).toHaveAttribute("href", "/#inicio");
+    expect(screen.getByRole("link", { name: "Serviços" })).toHaveAttribute("href", "/#servicos");
     expect(screen.getByRole("link", { name: "Projetos" })).toHaveAttribute("href", "/projetos");
   });
 

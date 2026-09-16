@@ -4,11 +4,11 @@ import Home from "./page";
 describe("Home", () => {
   it("explica o serviço e oferece caminhos para projetos e contato", () => {
     render(<Home />);
-    expect(screen.getByRole("heading", { level: 1, name: /crio sites e sistemas web/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /o que posso fazer/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /sites e sistemas que ajudam/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /o que você precisa resolver/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /você fala direto/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /ver projetos/i })).toHaveAttribute("href", "/projetos");
-    expect(screen.getByRole("link", { name: /falar pelo whatsapp/i })).toHaveAttribute("href", expect.stringContaining("https://wa.me/"));
-    expect(screen.getByRole("link", { name: /prefiro enviar/i })).toHaveAttribute("href", "mailto:descomplicadevdan@gmail.com");
+    expect(screen.getByRole("link", { name: /ver projetos reais/i })).toHaveAttribute("href", "/projetos");
+    expect(screen.getAllByRole("link", { name: /conversar com danilo/i })[0]).toHaveAttribute("href", expect.stringContaining("https://wa.me/"));
+    expect(screen.getByRole("link", { name: /enviar e-mail/i })).toHaveAttribute("href", "mailto:descomplicadevdan@gmail.com");
   });
 });

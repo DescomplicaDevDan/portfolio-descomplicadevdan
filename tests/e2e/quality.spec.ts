@@ -28,7 +28,7 @@ test("canais sociais não usam ações provisórias", async ({ page }) => {
   ).flat();
 
   expect(hrefs).not.toContain("#");
-  await expect(page.getByRole("button", { name: "Copiar e-mail", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Enviar e-mail", exact: true })).toHaveAttribute("href", /^mailto:/);
 });
 
 test("título principal cabe na largura de um celular", async ({ page }) => {

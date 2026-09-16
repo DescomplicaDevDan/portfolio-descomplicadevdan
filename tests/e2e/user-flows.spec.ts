@@ -19,10 +19,10 @@ test("menu móvel funciona por teclado e devolve o foco ao fechar", async ({ pag
 });
 test("contato direto abre WhatsApp e oferece e-mail", async ({ page }) => {
   await page.goto("/#contato");
-  const link = page.getByRole("link", { name: /falar pelo whatsapp/i });
+  const link = page.getByRole("link", { name: /conversar com danilo/i }).last();
   await expect(link).toHaveAttribute("href", /https:\/\/wa.me\/5522992090717\?text=/);
   await expect(link).toHaveAttribute("target", "_blank");
-  await expect(page.getByRole("link", { name: /prefiro enviar/i })).toHaveAttribute("href", "mailto:descomplicadevdan@gmail.com");
+  await expect(page.getByRole("link", { name: /enviar e-mail/i })).toHaveAttribute("href", "mailto:descomplicadevdan@gmail.com");
 });
 test("projetos publicados oferecem destinos reais e seguros", async ({ page }) => {
   await page.goto("/projetos");

@@ -14,6 +14,6 @@ export const site = {
   name: "Descomplica Dev Dan",
   title: "Descomplica Dev Dan | Sites e Sistemas Web",
   description:
-    "Danilo cria sites profissionais e sistemas web para apresentar seus serviços, facilitar o contato com clientes e simplificar sua rotina. Conheça os projetos.",
+    "Sites e sistemas web que ajudam negócios a vender, atender e trabalhar melhor. Conheça os projetos de Danilo e converse sobre sua ideia.",
   url: siteUrl,
 } as const;

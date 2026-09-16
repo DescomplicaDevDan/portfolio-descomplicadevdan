@@ -6,11 +6,10 @@ import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
 import styles from "./Header.module.css";
 
 const links = [
-  { label: "Início", href: "/#inicio", id: "inicio" },
   { label: "Serviços", href: "/#servicos", id: "servicos" },
   { label: "Projetos", href: "/projetos", id: "projetos" },
+  { label: "Como funciona", href: "/#processo", id: "processo" },
   { label: "Sobre", href: "/#sobre", id: "sobre" },
-  { label: "Contato", href: "/#contato", id: "contato" },
 ];
 
 export function Header() {
@@ -70,9 +69,11 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <Link className={styles.mobileContact} href="/#contato" onClick={() => handleNavigation("contato")}>Vamos conversar</Link>
         </nav>
 
         <div className={styles.actions}>
+          <Link className={styles.contactButton} href="/#contato" onClick={() => handleNavigation("contato")}>Vamos conversar</Link>
           <button ref={menuButtonRef} className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ""}`} type="button" aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen} aria-controls="primary-navigation" onClick={() => setIsMenuOpen((open) => !open)}>
             <span /><span /><span />
           </button>
