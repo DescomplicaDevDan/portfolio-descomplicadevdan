@@ -17,14 +17,13 @@ export function BrandLogo({ className, accessibleLabel }: BrandLogoProps) {
       <text
         x="0"
         y="31"
-        fill="#f3f5f4"
         fontFamily="var(--font-geist-sans), Arial, sans-serif"
         fontSize="22"
         fontWeight="720"
       >
-        descomplica
+        <tspan fill="#f3f5f4">descomplica</tspan>
+        <tspan dx="4" fill="currentColor">dev dan</tspan>
       </text>
-      <text x="132" y="31" fill="currentColor" fontFamily="var(--font-geist-sans), Arial, sans-serif" fontSize="22" fontWeight="720">dev dan</text>
     </svg>
   );
 }
