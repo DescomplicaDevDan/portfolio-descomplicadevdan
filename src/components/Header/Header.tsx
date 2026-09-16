@@ -7,9 +7,9 @@ import styles from "./Header.module.css";
 
 const links = [
   { label: "Início", href: "/#inicio", id: "inicio" },
-  { label: "Sobre", href: "/#sobre", id: "sobre" },
+  { label: "Serviços", href: "/#servicos", id: "servicos" },
   { label: "Projetos", href: "/projetos", id: "projetos" },
-  { label: "Skills", href: "/#skills", id: "skills" },
+  { label: "Sobre", href: "/#sobre", id: "sobre" },
   { label: "Contato", href: "/#contato", id: "contato" },
 ];
 

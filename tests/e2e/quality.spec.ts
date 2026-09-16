@@ -43,9 +43,18 @@ test("título principal cabe na largura de um celular", async ({ page }) => {
   expect(Math.max(...rightEdges)).toBeLessThanOrEqual(390);
 });
 
-test("terminal usa aria-label apenas com papel ARIA compatível", async ({ page }) => {
+test("binários respeitam movimento reduzido e imagens carregam", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-
-  const terminal = page.locator('pre[aria-label="Código sendo digitado"]');
-  await expect(terminal).toHaveAttribute("role", /.+/);
+  const columns = page.locator('[class*="binary"] span');
+  await expect(columns).toHaveCount(18);
+  expect(await columns.first().evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+  for (const image of await page.locator('main img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  }
+  for (const width of [360, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+  }
 });

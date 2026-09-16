@@ -8,7 +8,7 @@ const navigation = [
   { label: "Início", href: "/#inicio" },
   { label: "Sobre", href: "/#sobre" },
   { label: "Projetos", href: "/projetos" },
-  { label: "Skills", href: "/#skills" },
+  { label: "Serviços", href: "/#servicos" },
   { label: "Contato", href: "/#contato" },
 ];
 
@@ -35,8 +35,7 @@ export function Footer() {
             <Link href="/#inicio" aria-label="Voltar ao início">
               <BrandLogo className={styles.logo} />
             </Link>
-            <p>Transformando ideias em soluções digitais funcionais, humanas e construídas com propósito.</p>
-            <code>developer@portfolio:~$ keep_building</code>
+            <p>Sites e sistemas web para apresentar seus serviços e simplificar sua rotina.</p>
           </div>
 
           <nav className={styles.column} aria-label="Navegação do rodapé">
@@ -73,9 +72,9 @@ export function Footer() {
 
         <div className={styles.bottomBar}>
           <p>© {new Date().getFullYear()} Descomplica Dev Dan</p>
-          <p>Desenvolvido com Next.js, TypeScript e propósito.</p>
+          <p>Sites e sistemas feitos por Danilo.</p>
           <a href={contact.githubUrl + "/portfolio-descomplicadevdan"} target="_blank" rel="noreferrer">
-            portfolio@0.1.0 <span aria-hidden="true">↗</span>
+            Código do portfólio <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>

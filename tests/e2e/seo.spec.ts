@@ -4,13 +4,12 @@ test("home publica metadados essenciais para busca e compartilhamento", async ({
   await page.goto("/");
 
   await expect(page).toHaveTitle(/Descomplica Dev Dan/);
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /desenvolvedor web e analista de sistemas/i);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /sites profissionais e sistemas web/i);
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", /Descomplica Dev Dan/i);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /opengraph-image/);
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /^http:\/\/localhost:3000\/?$/);
 });
-
 test("projetos possui título, descrição e canonical próprios", async ({ page }) => {
   await page.goto("/projetos");
 

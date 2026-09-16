@@ -17,33 +17,13 @@ test("menu móvel funciona por teclado e devolve o foco ao fechar", async ({ pag
   await expect(menuButton).toBeFocused();
   await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe("");
 });
-
-test("formulário valida os campos e abre o WhatsApp com a mensagem preenchida", async ({ page }) => {
-  await page.route("https://wa.me/**", async (route) => {
-    await route.fulfill({ status: 200, contentType: "text/html", body: "WhatsApp" });
-  });
+test("contato direto abre WhatsApp e oferece e-mail", async ({ page }) => {
   await page.goto("/#contato");
-
-  await page.getByRole("button", { name: /enviar mensagem/i }).click();
-  await expect(page.getByLabel(/seu nome/i)).toHaveJSProperty("validity.valueMissing", true);
-
-  await page.getByLabel(/seu nome/i).fill("Ana Souza");
-  await page.getByLabel(/seu e-mail/i).fill("ana@empresa.com");
-  await page.getByLabel(/seu whatsapp/i).fill("(22) 99999-0000");
-  await page.getByLabel(/assunto/i).fill("Novo projeto");
-  await page.getByLabel(/mensagem/i).fill("Gostaria de conversar sobre um site.");
-
-  await Promise.all([
-    page.waitForURL((url) => url.hostname === "wa.me" && url.pathname === "/5522992090717"),
-    page.getByRole("button", { name: /enviar mensagem/i }).click(),
-  ]);
-
-  const message = decodeURIComponent(new URL(page.url()).searchParams.get("text") ?? "");
-  expect(message).toContain("*Assunto:* Novo projeto");
-  expect(message).toContain("*Nome:* Ana Souza");
-  expect(message).toContain("*E-mail:* ana@empresa.com");
+  const link = page.getByRole("link", { name: /falar pelo whatsapp/i });
+  await expect(link).toHaveAttribute("href", /https:\/\/wa.me\/5522992090717\?text=/);
+  await expect(link).toHaveAttribute("target", "_blank");
+  await expect(page.getByRole("link", { name: /prefiro enviar/i })).toHaveAttribute("href", "mailto:descomplicadevdan@gmail.com");
 });
-
 test("projetos publicados oferecem destinos reais e seguros", async ({ page }) => {
   await page.goto("/projetos");
 

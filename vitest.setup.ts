@@ -21,12 +21,15 @@ Object.defineProperty(window, "localStorage", {
 });
 
 vi.mock("next/image", () => ({
-  default: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement> & { src: string | { src: string } }) =>
-    React.createElement("img", {
+  default: (imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { src: string | { src: string }; preload?: boolean }) => {
+    const { src, alt, ...props } = imageProps;
+    delete props.preload;
+    return React.createElement("img", {
       ...props,
       src: typeof src === "string" ? src : src.src,
       alt,
-    }),
+    });
+  },
 }));
 
 Object.defineProperty(window, "matchMedia", {
