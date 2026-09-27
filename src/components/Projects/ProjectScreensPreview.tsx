@@ -28,12 +28,12 @@ export function ProjectScreensPreview({ project = "nutricomp" }: { project?: "nu
       <div className={`${styles.composition} ${isSelf ? styles.desktopOnly : ""}`}>
         <div className={styles.browser}>
           <div className={styles.toolbar}><span>● ● ●</span><span>{isSelf ? "Self em Ação · Prévia" : isMotor ? "Motor de Busca · Python / Flask" : "nutricomp.com.br"}</span></div>
-          <Image src={source(desktop.file)} width={desktop.width} height={desktop.height} alt={`${name}: ${desktop.title}`} sizes="(max-width: 850px) 85vw, 550px" />
+          <Image src={source(desktop.file)} width={desktop.width} height={desktop.height} alt={`${name}: ${desktop.title}`} sizes="(max-width: 850px) 85vw, 550px" quality={90} />
         </div>
         {mobile && <div className={styles.phone}>
           <div className={styles.phoneTop} aria-hidden="true"><span /><i /></div>
           <div className={styles.phoneScreen}>
-          <Image src={source("mobile")} width={mobile.width} height={mobile.height} alt={`${name} no celular`} sizes="(max-width: 560px) 110px, 155px" />
+          <Image src={source("mobile")} width={mobile.width} height={mobile.height} alt={`${name} no celular`} sizes="(max-width: 560px) 110px, 155px" quality={90} />
           </div>
           <div className={styles.phoneBottom} aria-hidden="true"><span /></div>
         </div>}

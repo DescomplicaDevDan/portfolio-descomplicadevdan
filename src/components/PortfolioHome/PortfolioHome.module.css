@@ -8,13 +8,14 @@
 .hero h1 { max-width: 680px; margin-top: 18px; font-size: clamp(2.7rem, 4.35vw, 4.35rem); line-height: 1.04; letter-spacing: -.058em; }
 .main h1 span, .main h2 span, .trust h3 span { color: #42e862; }
 .lead { max-width: 570px; margin-top: 22px; color: #c3cec7; font-size: clamp(1rem, 1.35vw, 1.16rem); line-height: 1.65; }
-.primary { min-height: 52px; margin-top: 28px; padding: 0 22px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 13px; background: #42e862; color: #061109; font-weight: 720; transition: background-color 160ms ease, transform 160ms ease; }
+.primary { min-height: 52px; margin-top: 28px; padding: 0 22px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #42e862; color: #061109; font-weight: 720; line-height: 1.2; text-align: center; white-space: nowrap; transition: background-color 160ms ease, transform 160ms ease; }
+.primary > span, .primarySmall > span { width: 1em; height: 1em; flex: 0 0 1em; display: inline-grid; place-items: center; line-height: 1; }
 .primary:hover { background: #72f189; transform: translateY(-2px); }
 .textLink { display: inline-flex; align-items: center; gap: 10px; color: #6fee87; font-weight: 620; text-underline-offset: 5px; }
 .heroCopy > .textLink { margin: 18px 0 0 18px; }
 .textLink:hover { text-decoration: underline; }
 .reassurance { margin-top: 18px; color: #8f9c94; font-size: .78rem; }
-.portrait { width: 100%; height: min(560px, 62svh); object-fit: cover; object-position: center 27%; border-radius: 14px; }
+.portrait { width: min(100%, 448px); height: auto; justify-self: end; object-fit: contain; border-radius: 14px; }
 .benefits { min-height: 116px; border-top: 1px solid #26382c; display: grid; grid-template-columns: repeat(3, 1fr); }
 .benefits > div { padding: 24px clamp(14px, 2.3vw, 32px); display: flex; align-items: center; gap: 16px; }
 .benefits > div + div { border-left: 1px solid #26382c; }
@@ -50,15 +51,16 @@
 .tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 7px; }
 .tags span { padding: 5px 9px; border-radius: 5px; background: #17241c; color: #c3cec7; font-size: .72rem; }
 .projectActions { margin-top: 18px; display: flex; gap: 9px; }
-.primarySmall, .secondarySmall { min-height: 40px; padding: 0 13px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-size: .8rem; font-weight: 680; }
+.primarySmall, .secondarySmall { min-height: 40px; padding: 0 13px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-size: .8rem; font-weight: 680; line-height: 1.2; text-align: center; white-space: nowrap; }
+.projectActions > a { flex: 1 1 0; }
 .primarySmall { background: #42e862; color: #061109; }
 .secondarySmall { border: 1px solid #3c5a46; }
 .trust { margin-top: 24px; display: grid; grid-template-columns: .92fr 1.08fr; align-items: stretch; border: 1px solid #294033; border-radius: 12px; overflow: hidden; background: #09120e; }
-.trust img { width: 100%; height: 250px; object-fit: cover; }
+.trust img { width: 100%; height: auto; align-self: center; object-fit: contain; }
 .trust > div { padding: 34px; display: flex; flex-direction: column; justify-content: center; }
 .trust h3 { max-width: 520px; font-size: clamp(1.7rem, 2.7vw, 2.6rem); line-height: 1.1; letter-spacing: -.04em; }
 .process { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; gap: 54px; }
-.process > img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; border-radius: 12px; }
+.process > img { width: 100%; height: auto; min-height: 0; align-self: center; object-fit: contain; border-radius: 12px; }
 .process .eyebrow { margin-bottom: 14px; }
 .steps { margin-top: 30px; list-style: none; display: grid; gap: 20px; }
 .steps li { display: grid; grid-template-columns: 48px 1fr; align-items: start; gap: 16px; }
@@ -96,7 +98,7 @@
   .primary { width: 100%; min-height: 50px; margin-top: 20px; }
   .heroCopy > .textLink { margin: 14px 0 0; width: 100%; justify-content: center; }
   .reassurance { margin-top: 12px; text-align: center; }
-  .portrait { height: 245px; border-radius: 10px; object-position: center 24%; }
+  .portrait { width: 100%; height: auto; justify-self: stretch; border-radius: 10px; }
   .benefits { min-height: 82px; }
   .benefits > div { padding: 13px 8px; justify-content: center; gap: 8px; }
   .benefits svg { width: 22px; height: 22px; }
@@ -125,13 +127,14 @@
   .projectCopy > p { margin-top: 9px; font-size: .82rem; line-height: 1.45; }
   .tags { display: none; }
   .projectActions { margin-top: 12px; flex-direction: column; }
+  .projectActions > a { width: 100%; flex: none; }
   .primarySmall, .secondarySmall { min-height: 38px; }
   .trust { margin-top: 18px; grid-template-columns: 1fr; }
-  .trust img { height: 210px; }
+  .trust img { height: auto; }
   .trust > div { padding: 22px; }
   .trust h3 { font-size: 1.65rem; }
   .process { grid-template-columns: 1fr; gap: 24px; }
-  .process > img { min-height: 0; height: 225px; }
+  .process > img { min-height: 0; height: auto; }
   .steps { margin-top: 24px; }
   .steps li { grid-template-columns: 42px 1fr; }
   .steps li > span { width: 40px; height: 40px; }

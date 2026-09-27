@@ -33,10 +33,14 @@ const benefits = [
 const projectPreviews = [
   {
     image: "/assets/projects/nutricomp/desktop.png",
+    width: 1917,
+    height: 865,
     description: "Cardápio digital com combos, carrinho e pedidos pelo WhatsApp.",
   },
   {
     image: "/assets/projects/self-em-acao/inicio-sem-retrato.png",
+    width: 1864,
+    height: 844,
     description: "Site para apresentar serviços de psicologia e facilitar o contato.",
   },
 ];
@@ -66,7 +70,7 @@ export function PortfolioHome() {
               <Link className={styles.textLink} href="/projetos">Ver projetos reais <span aria-hidden="true">→</span></Link>
               <p className={styles.reassurance}>Conversa inicial direta e sem linguagem técnica.</p>
             </div>
-            <Image className={styles.portrait} src="/assets/photos/danilo-retrato.webp" alt="Danilo em seu ambiente de trabalho" width={1122} height={1402} sizes="(max-width: 760px) 100vw, 48vw" preload />
+            <Image className={styles.portrait} src="/assets/photos/danilo-retrato.webp" alt="Danilo em seu ambiente de trabalho" width={1122} height={1402} sizes="(max-width: 760px) calc(100vw - 32px), 448px" unoptimized preload />
           </div>
           <div className={styles.benefits} aria-label="Benefícios">
             {benefits.map(({ title, description, Icon }) => (
@@ -100,7 +104,7 @@ export function PortfolioHome() {
           <div className={styles.projects}>
             {projects.slice(0, 2).map((project, index) => (
               <article className={styles.project} key={project.title}>
-                <div className={styles.projectImage}><span>Projeto real</span><Image src={projectPreviews[index].image} alt={`Captura do projeto ${project.title}`} width={1200} height={750} sizes="(max-width: 760px) 100vw, 42vw" /></div>
+                <div className={styles.projectImage}><span>Projeto real</span><Image src={projectPreviews[index].image} alt={`Captura do projeto ${project.title}`} width={projectPreviews[index].width} height={projectPreviews[index].height} sizes="(max-width: 390px) calc(100vw - 32px), (max-width: 760px) 42vw, (max-width: 1264px) 46vw, 340px" quality={90} /></div>
                 <div className={styles.projectCopy}>
                   <div className={styles.projectTitle}><h3>{project.title}</h3><span data-status={project.status === "Publicado" ? "live" : "building"}>{project.status}</span></div>
                   <p>{projectPreviews[index].description}</p>
@@ -114,14 +118,14 @@ export function PortfolioHome() {
             ))}
           </div>
           <div className={styles.trust} id="sobre">
-            <Image src="/assets/photos/danilo-desenvolvendo.webp" alt="Danilo desenvolvendo um projeto no computador" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 45vw" />
+            <Image src="/assets/photos/danilo-desenvolvendo.webp" alt="Danilo desenvolvendo um projeto no computador" width={1400} height={933} sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1264px) 45vw, 500px" unoptimized />
             <div><h3>Você fala direto com <span>quem desenvolve.</span></h3><p>Sem intermediários: eu entendo a necessidade, planejo e desenvolvo a solução.</p></div>
           </div>
         </section>
 
         <section className={styles.section} id="processo" aria-labelledby="process-title">
           <div className={styles.process}>
-            <Image src="/assets/photos/danilo-planejando.webp" alt="Danilo planejando as telas de um site" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 50vw" />
+            <Image src="/assets/photos/danilo-planejando.webp" alt="Danilo planejando as telas de um site" width={1400} height={933} sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1264px) 50vw, 573px" unoptimized />
             <div><p className={styles.eyebrow}>Um caminho simples e transparente</p><h2 id="process-title">Do primeiro contato <span>à entrega.</span></h2><ol className={styles.steps}>{steps.map((step, index) => <li key={step.title}><span>0{index + 1}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></li>)}</ol></div>
           </div>
           <div className={styles.contact} id="contato">
