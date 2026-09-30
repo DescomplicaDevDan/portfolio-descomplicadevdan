@@ -1,68 +1,48 @@
-# Descomplica Dev Dan
+# Descomplica Dev Dan — Front-end Júnior
 
-Portfólio de Danilo, desenvolvedor web e analista de sistemas. O site apresenta, em poucos segundos, como sites profissionais e sistemas sob medida podem ajudar um negócio a vender, atender e trabalhar melhor.
+Portfólio de Danilo, com foco em React, TypeScript e JavaScript. Apresenta projetos, decisões técnicas e limitações para avaliação profissional.
 
-## Objetivo do projeto
+## Projetos e evidências
 
-A página transforma o portfólio em uma jornada comercial simples:
+- **Nutricomp:** projeto freelance com catálogo, regras de gramagem, combos, carrinho persistente e preparação de mensagem para WhatsApp.
+- **Motor de Busca:** fundamentos de algoritmos e recuperação de documentos com Python, Flask, TF-IDF e Trie.
+- **Self em Ação:** interface institucional em desenvolvimento, sem ser apresentada como case concluído.
+- **Este portfólio:** Next.js, componentes de servidor para conteúdo, interação do menu no cliente, CSS Modules, testes de componentes e E2E.
 
-- comunica a proposta de valor já na primeira tela;
-- apresenta serviços a partir do problema do cliente;
-- usa projetos reais como prova do trabalho;
-- explica o processo antes da decisão;
-- conduz para uma conversa direta por WhatsApp ou e-mail.
+## Organização
 
-No celular, o conteúdo prioriza leitura rápida, ações visíveis e navegação curta. No desktop, a mesma mensagem ganha mais contexto sem perder foco.
+`PortfolioHome.tsx` compõe Hero, Projetos, Case, Stack, Sobre e Contato. Cada seção tem responsabilidade própria; dados compartilhados ficam em `src/config/` (contato, projetos, site e competências).
 
-## Estratégia de marketing
+A home prioriza projetos e código. O case resume as decisões da Nutricomp e aponta para a documentação do repositório. As fotos usam `next/image`, dimensões e `sizes`. A animação respeita movimento reduzido.
 
-- **Clareza:** título orientado ao resultado que o cliente procura.
-- **Identificação:** serviços descritos como necessidades reais do negócio.
-- **Confiança:** fotos autorais, projetos publicados e processo transparente.
-- **Conversão:** WhatsApp como ação principal e e-mail como alternativa.
-- **Credibilidade:** sem números, depoimentos ou promessas que não possam ser comprovados.
+## Executar e verificar
 
-## Engenharia e experiência
-
-- Next.js 16, React 19 e TypeScript;
-- CSS Modules com layout responsivo;
-- imagens WebP otimizadas com `next/image`;
-- SEO técnico com metadados, sitemap e robots;
-- acessibilidade verificada com axe-core;
-- animação de binários discreta e compatível com movimento reduzido;
-- testes de componentes com Vitest e fluxos reais com Playwright.
-
-## Projetos apresentados
-
-- **Nutricomp — Marmitas App:** cardápio digital com combos, carrinho e pedidos por WhatsApp.
-- **Self em Ação:** site para apresentar serviços de psicologia e facilitar o contato.
-
-## Executar localmente
-
-Requer Node.js 22 e npm.
+Use Node.js 22 e npm:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Acesse `http://localhost:3000`.
-
-## Verificar
+Acesse http://localhost:3000. Para verificar:
 
 ```bash
 npx playwright install chromium
 npm run check
 ```
 
-O comando executa lint, TypeScript, testes com cobertura, testes no navegador e build de produção.
+O comando executa lint, TypeScript, testes com cobertura, Playwright e build. Os testes axe verificam violações automáticas graves, sem garantir conformidade completa de acessibilidade.
 
-## Atualizar conteúdo
+## Metadados e publicação
 
-- `src/components/PortfolioHome/`: conteúdo e visual da página inicial;
-- `src/config/projects.ts`: projetos e links;
-- `src/config/contact.ts`: canais de contato;
-- `src/config/site.ts`: metadados e URL pública;
-- `public/assets/photos/`: fotos aprovadas em WebP.
+Defina `NEXT_PUBLIC_SITE_URL` com a URL canônica de produção. Na Vercel, o fallback usa `VERCEL_PROJECT_PRODUCTION_URL` antes da URL de preview; localmente usa localhost. Canonical, Open Graph, sitemap e robots usam essa configuração.
 
-Defina `NEXT_PUBLIC_SITE_URL` em produção fora da Vercel. Na Vercel, a URL é detectada automaticamente.
+A alteração no repositório não confirma publicação. Valide a URL e o build do provedor antes de divulgar.
+
+## Manutenção
+
+- Conteúdo profissional: `docs/POSICIONAMENTO.md`.
+- Evidências por competência e roteiro de entrevista: `docs/COMPETENCIAS.md`.
+- Links e dados dos projetos: `src/config/projects.ts`.
+- Contatos: `src/config/contact.ts`.
+- Verificações e pendências desta revisão: `docs/REVISAO.md`.

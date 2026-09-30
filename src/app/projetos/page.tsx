@@ -1,5 +1,6 @@
 import { ProjectScreensPreview } from "@/components/Projects/ProjectScreensPreview";
 import type { Metadata } from "next";
+import { Footer } from "@/components/Footer/Footer";
 import { Header } from "@/components/Header/Header";
 import { projects } from "@/config/projects";
 import styles from "./page.module.css";
@@ -52,6 +53,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

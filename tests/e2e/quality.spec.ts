@@ -34,7 +34,9 @@ test("canais sociais não usam ações provisórias", async ({ page }) => {
 test("título principal cabe na largura de um celular", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await page.waitForTimeout(3_000);
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator("#stack").getByText("React", { exact: true })).toBeVisible();
 
   const rightEdges = await page.locator("h1 > span").evaluateAll((lines) =>
     lines.map((line) => line.getBoundingClientRect().right),

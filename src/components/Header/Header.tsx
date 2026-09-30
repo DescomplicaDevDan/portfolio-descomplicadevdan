@@ -6,9 +6,9 @@ import { BrandLogo } from "@/components/BrandLogo/BrandLogo";
 import styles from "./Header.module.css";
 
 const links = [
-  { label: "Serviços", href: "/#servicos", id: "servicos" },
+  { label: "Stack", href: "/#stack", id: "stack" },
   { label: "Projetos", href: "/projetos", id: "projetos" },
-  { label: "Como funciona", href: "/#processo", id: "processo" },
+  { label: "Como desenvolvo", href: "/#processo", id: "processo" },
   { label: "Sobre", href: "/#sobre", id: "sobre" },
 ];
 
