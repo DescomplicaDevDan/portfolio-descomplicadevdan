@@ -12,8 +12,8 @@ export const siteUrl = normalizeUrl(
 
 export const site = {
   name: "Descomplica Dev Dan",
-  title: "Descomplica Dev Dan | Sites e Sistemas Web",
+  title: "Descomplica Dev Dan | Desenvolvedor Front-end Júnior",
   description:
-    "Sites e sistemas web que ajudam negócios a vender, atender e trabalhar melhor. Conheça os projetos de Danilo e converse sobre sua ideia.",
+    "Desenvolvedor Front-end Júnior: interfaces responsivas com React, TypeScript e JavaScript. Conheça os projetos, decisões técnicas e testes de Danilo.",
   url: siteUrl,
 } as const;
