@@ -10,14 +10,14 @@ describe("ProjectsPage", () => {
     const projectHeadings = screen.getAllByRole("heading", { level: 2 });
     expect(projectHeadings).toHaveLength(3);
 
-    expect(screen.getByRole("link", { name: /ver código de Self em Ação/i })).toHaveAttribute("href", "https://github.com/DescomplicaDevDan/self-em-acao");
+    expect(screen.getByRole("link", { name: /ver código de Central de Chamados/i })).toHaveAttribute("href", "https://github.com/DescomplicaDevDan/Central-de-Chamados");
     expect(screen.getByRole("link", { name: /ver código de Nutricomp/i })).toHaveAttribute("href", "https://github.com/DescomplicaDevDan/marmitas-app");
     expect(screen.getByRole("link", { name: /ver código de Motor de Busca/i })).toHaveAttribute("href", "https://github.com/DescomplicaDevDan/Motor_busca");
     expect(screen.getByRole("link", { name: /visitar site de Nutricomp/i })).toHaveAttribute("href", "https://www.nutricomp.com.br");
     expect(screen.getByRole("link", { name: /visitar site de Motor de Busca/i })).toHaveAttribute("href", "https://motor-busca.vercel.app/");
     expect(screen.getByText("Em desenvolvimento")).toBeInTheDocument();
 
-    const firstProject = screen.getByRole("heading", { level: 2, name: "Self em Ação" }).closest("article");
+    const firstProject = screen.getByRole("heading", { level: 2, name: "Central de Chamados" }).closest("article");
     expect(firstProject).not.toBeNull();
     expect(within(firstProject!).getByText("Next.js")).toBeInTheDocument();
     expect(within(firstProject!).getByText("Tailwind CSS")).toBeInTheDocument();
