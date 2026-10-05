@@ -32,7 +32,7 @@ export default function ProjectsPage() {
           <div className={styles.grid}>
             {projects.map((project) => (
               <article className={`${styles.card} ${project.featured ? styles.featured : ""}`} key={project.number}>
-                {project.featured ? <ProjectScreensPreview /> : project.title === "Motor de Busca" ? <ProjectScreensPreview project="motor-busca" /> : <ProjectScreensPreview project="self-em-acao" />}
+                {project.featured ? <ProjectScreensPreview /> : project.title === "Motor de Busca" ? <ProjectScreensPreview project="motor-busca" /> : <ProjectScreensPreview project="central-de-chamados" />}
                 <div className={styles.cardContent}>
                   <div className={styles.meta}><span>{project.number}</span><p>{project.category}</p></div>
                   <h2>{project.title}</h2>

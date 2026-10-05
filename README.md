@@ -6,7 +6,7 @@ Portfólio de Danilo, com foco em React, TypeScript e JavaScript. Apresenta proj
 
 - **Nutricomp:** projeto freelance com catálogo, regras de gramagem, combos, carrinho persistente e preparação de mensagem para WhatsApp.
 - **Motor de Busca:** fundamentos de algoritmos e recuperação de documentos com Python, Flask, TF-IDF e Trie.
-- **Self em Ação:** interface institucional em desenvolvimento, sem ser apresentada como case concluído.
+- **Central de Chamados:** central interna de suporte em desenvolvimento, com layout e prévia do formulário de abertura de chamados.
 - **Este portfólio:** Next.js, componentes de servidor para conteúdo, interação do menu no cliente, CSS Modules, testes de componentes e E2E.
 
 ## Organização

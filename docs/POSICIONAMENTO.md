@@ -16,6 +16,6 @@ Não declarar API do WhatsApp, backend, pagamento integrado, confirmação autom
 
 ## Organização do GitHub
 
-Ordem sugerida para os repositórios fixados: Nutricomp, portfólio, Motor de Busca e Self em Ação. O último deve manter o status “Em desenvolvimento”. O Support Lab é complementar para candidaturas híbridas.
+Ordem sugerida para os repositórios fixados: Nutricomp, portfólio, Motor de Busca e Central de Chamados. O último deve manter o status “Em desenvolvimento”. O Support Lab é complementar para candidaturas híbridas.
 
 O README do perfil foi alinhado em uma branch própria. Bio, repositórios fixados, LinkedIn e CV precisam de aplicação nos respectivos canais; este arquivo não comprova que os perfis externos foram alterados.
